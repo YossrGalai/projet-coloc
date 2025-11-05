@@ -1,3 +1,5 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import {Accueil} from  "./accueil/accueil";
+export const routes: Routes = [
+     { path: '', component: Accueil }, // default route
+];
