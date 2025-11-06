@@ -1,9 +1,7 @@
-
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-proprietaire',
    imports: [
@@ -62,5 +60,9 @@ export class Proprietaire {
 
   refuserReservation(r: any) {
     console.log("Réservation refusée :", r);
+  }
+
+  retourAccueil() {
+    this.router.navigate(['/']);
   }
 }

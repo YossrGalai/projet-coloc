@@ -1,8 +1,7 @@
-
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -47,4 +46,10 @@ clearPhoto() {
     { logement: 'Appartement moderne à Rabat', date: '12/10/2025', statut: 'Confirmée' },
     { logement: 'Studio à Agdal', date: '05/09/2025', statut: 'En attente' }
   ];
+
+  constructor(private router: Router) {}
+
+  retourAccueil() {
+    this.router.navigate(['/']);
+  }
 }

@@ -73,3 +73,26 @@
   transform: scale(1.05);
   opacity: 0.9;
 }
+
+
+
+#btn-retour {
+  position: fixed;
+  bottom: 30px;
+  left: 10%;
+  transform: translateX(-50%);
+  background-color: #fec6cf;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(120, 95, 80, 0.25);
+}
+
+#btn-retour:hover {
+  background-color: #f2a6b2;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 8px 25px rgba(120, 95, 80, 0.35);
+}
