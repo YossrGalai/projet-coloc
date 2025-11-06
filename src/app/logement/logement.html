@@ -1,0 +1,33 @@
+
+
+<div class="logement-wrapper">
+
+  <h2 class="logement-title">Ajouter un Logement</h2>
+
+  <form class="logement-form" (ngSubmit)="Enregistrer()">
+
+    <label>Titre du logement :</label>
+    <input type="text" [(ngModel)]="logement.titre" name="titre" required>
+
+    <label>Adresse :</label>
+    <input type="text" [(ngModel)]="logement.adresse" name="adresse" required>
+
+    <label>Prix / mois :</label>
+    <input type="number" [(ngModel)]="logement.prix" name="prix" required>
+
+    <label>Description :</label>
+    <textarea [(ngModel)]="logement.description" name="description" required></textarea>
+
+    <label>Image :</label>
+    <input type="file" (change)="onImageSelected($event)">
+
+    <div class="image-preview" *ngIf="logement.image">
+      <img [src]="logement.image" alt="Aperçu">
+    </div>
+
+    <button class="btn-save" type="submit">✅ Ajouter le Logement</button>
+    <button class="btn-back" routerLink="/proprietaire">← Retour</button>
+
+  </form>
+
+</div>

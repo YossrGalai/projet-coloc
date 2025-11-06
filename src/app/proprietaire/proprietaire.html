@@ -1,0 +1,88 @@
+<div class="proprietaire-wrapper">
+
+  <h2 class="proprietaire-title">
+    Propriétaire : {{ user.prenom }} {{ user.nom }}
+  </h2>
+
+  <div class="proprietaire-content">
+
+    <!-- Formulaire -->
+    <form class="proprietaire-form" (ngSubmit)="updateProfile()">
+
+      <label>CIN :</label>
+      <input type="text" [(ngModel)]="user.Cin" name="Cin">
+
+      <label>Nom :</label>
+      <input type="text" [(ngModel)]="user.nom" name="nom">
+
+      <label>Prénom :</label>
+      <input type="text" [(ngModel)]="user.prenom" name="prenom">
+
+      <label>Email :</label>
+      <input type="email" [(ngModel)]="user.email" name="email">
+
+      <label>Téléphone :</label>
+      <input type="text" [(ngModel)]="user.tel" name="tel">
+
+      <label>Date de naissance :</label>
+      <input type="date" [(ngModel)]="user.date" name="date">
+
+      <button type="submit" class="btn-save">Enregistrer</button>
+    </form>
+
+    <!-- Photo Propriétaire -->
+    <div class="proprietaire-photo-section">
+      <img class="proprietaire-photo" [src]="user.photo || 'assets/user.png'" alt="Photo">
+
+      <div class="photo-buttons">
+        <button class="btn-edit" (click)="changePhoto()">Changer</button>
+        <button class="btn-clear" (click)="clearPhoto()">Retirer</button>
+      </div>
+    </div>
+
+  </div>
+
+<hr class="divider">
+
+<!-- LOGEMENTS AJOUTÉS -->
+<section class="section">
+   <div class="section-header">
+    <h3>🏠 Logements Ajoutés</h3>
+    <button class="btn-add" (click)="ajouterLogement()">+ Ajouter un logement</button>
+  </div>
+  <div class="ajoute-grid">
+    <div class="ajoute-card" *ngFor="let f of logementsAjoutes">
+      <img [src]="f.image" alt="">
+      <div class="ajoute-info">
+        <h4>{{ f.titre }}</h4>
+        <p class="prix">{{ f.prix }} / mois</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DEMANDES DE RÉSERVATION -->
+<section class="section">
+  <h3>📅 Demandes de réservation</h3>
+
+  <table class="reservations-table">
+    <tr>
+      <th>Logement</th>
+      <th>Date de demande</th>
+      <th>Actions</th>
+    </tr>
+
+    <tr *ngFor="let r of reservations">
+      <td>{{ r.logement }}</td>
+      <td>{{ r.date }}</td>
+      <td class="action-buttons">
+        <button class="btn-accept" (click)="accepterReservation(r)">Accepter</button>
+        <button class="btn-refuse" (click)="refuserReservation(r)">Refuser</button>
+      </td>
+    </tr>
+  </table>
+</section>
+
+</div>

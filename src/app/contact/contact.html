@@ -1,0 +1,36 @@
+<div class="contact-container">
+  <h2>Contact & Réservation</h2>
+
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+    <label>CIN *</label>
+    <input type="text" [(ngModel)]="formData.Cin" name="Cin" required>
+
+    <label>Nom *</label>
+    <input type="text" [(ngModel)]="formData.Nom" name="Nom" required>
+
+    <label>Prénom *</label>
+    <input type="text" [(ngModel)]="formData.Prenom" name="Prenom" required>
+
+    <label>Email *</label>
+    <input type="email" [(ngModel)]="formData.email" name="email" required>
+
+    <label>Numéro de téléphone</label>
+    <input type="tel" [(ngModel)]="formData.Tel" name="Tel">
+
+    <label>Date souhaitée de réservation</label>
+    <input type="date" [(ngModel)]="formData.date" name="date">
+
+    <label>Message ou détails supplémentaires *</label>
+    <textarea rows="4" [(ngModel)]="formData.message" name="message" required></textarea>
+
+    <button type="submit" [disabled]="form.invalid">Envoyer la demande</button>
+  </form>
+
+  <div class="contact-info">
+    <h3>Nos Contacts</h3>
+    <p>📞 Téléphone : +212 6 99 88 77 66</p>
+    <p>📧 Email : contact@EasyColloc.com</p>
+    <p>🏢 Adresse : Avenue Habib Bouguiba, Tunis</p>
+  </div>
+</div>
