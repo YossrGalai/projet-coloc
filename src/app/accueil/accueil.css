@@ -1,93 +1,203 @@
-.accueil {
-  background-color: #f8f1e4; /* beige doux */
-  color: #3f3d2e; /* brun olive doux */
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  padding: 4rem 1.5rem;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.hero {
-  margin-bottom: 4rem;
+/* --- Header --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  background: linear-gradient(90deg, #f2e5eb, #d0e7f0);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.accent {
-  color: #6b8e23; /* vert olive doux */
-  font-family: "Playfair Display", serif;
-  font-size: 3.5rem;
-  letter-spacing: 3px;
+.logo {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #478797;
+  letter-spacing: 1px;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  margin: 1rem 0 2rem 0;
-  color: #5b584f;
+.nav-buttons {
+  display: flex;
+  gap: 12px;
 }
 
+/* --- Boutons --- */
 .btn {
-  background-color: #6b8e23;
-  color: white;
+  padding: 10px 22px;
+  border-radius: 25px;
   border: none;
-  padding: 1rem 2.5rem;
-  border-radius: 25px;
-  font-size: 1.1rem;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-.btn:hover {
-  background-color: #5a7a1d;
+.btn.main {
+  background-color: #6cc3d5;
+  color: white;
 }
 
-.advantages {
-  background-color: #fffaf3;
-  padding: 3rem 2rem;
+.btn.main:hover {
+  background-color: #55b4c8;
+}
+
+.btn.secondary {
+  background-color: #ffe6f0;
+  color: #6d306b;
+  border: 2px solid #ffc7de;
+}
+
+.btn.secondary:hover {
+  background-color: #ffc7de;
+  color: white;
+}
+
+/* --- Hero Section --- */
+.contenu-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #f5e5eb 0%, #f7faff 100%);
   border-radius: 25px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-  max-width: 1100px;
-  margin: 0 auto;
+  padding: 60px 80px;
+  margin: 50px auto;
+  width: 85%;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.contenu-principal:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.contenu-gauche {
+  flex: 2;
+}
+
+.contenu-gauche h2 {
+  font-size: 2.2rem;
+  color: #2b2d42;
+  margin-bottom: 15px;
+}
+
+.contenu-gauche p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.contenu-droite {
+  flex: 1;
+  text-align: right;
+}
+
+.btn-recherche {
+  background-color: #e4c1c2;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 182, 185, 0.5);
+}
+
+.btn-recherche:hover {
+  background-color: #f1b5b7;
+  transform: scale(1.05);
+}
+
+/* --- Avantages --- */
+.advantages {
+  background-color: #f1eef3;
+  text-align: center;
+  padding: 90px 10%;
 }
 
 .advantages h2 {
-  color: #6b8e23;
-  font-family: "Playfair Display", serif;
-  margin-bottom: 3rem;
-  font-size: 2rem;
+  color: #2f6b7a;
+  font-size: 2.4em;
+  margin-bottom: 60px;
+  font-weight: 700;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+.advantage-list {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
-.card {
-  background: linear-gradient(145deg, #ffffff, #f4efdc);
-  border-radius: 18px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+.advantage {
+  background-color: #d8e3ea;
+  padding: 45px;
+  border-radius: 25px;
+  width: 320px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+.advantage:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.icon {
-  font-size: 2.2rem;
-  margin-bottom: 0.8rem;
-  color: #5e7a1a;
+.advantage img {
+  width: 75px;
+  margin-bottom: 18px;
 }
 
-.card h3 {
-  color: #4a5d23;
-  font-size: 1.4rem;
-  margin-bottom: 0.6rem;
-  font-family: "Playfair Display", serif;
+.advantage h3 {
+  color: #356771;
+  font-size: 1.5em;
+  margin-bottom: 10px;
 }
 
-.card p {
-  color: #5b584f;
-  font-size: 1rem;
-  line-height: 1.6;
+/* --- Footer --- */
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(90deg, #d4f0ff 0%, #ffe6f0 100%);
+  color: #444;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/* --- Animation --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .contenu-principal {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .contenu-droite {
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  .advantage-list {
+    flex-direction: column;
+    align-items: center;
+  }
 }

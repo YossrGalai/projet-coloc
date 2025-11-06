@@ -21,16 +21,15 @@ import { Logement } from './logement/logement';
     
   
 import { Routes } from '@angular/router';
-import { Inscription } from './inscription/inscription';
 import {Accueil} from  "./accueil/accueil";
-import { Apropos } from './apropos/apropos';
-//import { Recherche } from './recherche/recherche';
+import {RechercheLogement} from  "./recherche-logement/recherche-logement";
+import {Inscription} from  "./inscription/inscription";
+import {SeConnecter} from  "./se-connecter/se-connecter";
+
+
 export const routes: Routes = [
-     { path: '', component: Inscription }, // default route
-     { path: 'inscription', component: Inscription },
-     //{ path: 'recherche', component: Recherche }
-     { path: 'apropos', component: Apropos },
+     { path: '', component: Accueil }, // default route
+     { path: 'recherche-logement', component: RechercheLogement },
+     { path: 'se-connecter', component: SeConnecter },
+     { path: 'inscription', component: Inscription }
 ];
-
-
-export default routes;
