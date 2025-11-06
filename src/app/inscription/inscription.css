@@ -1,0 +1,139 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inscription-container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: linear-gradient(145deg, #f7efe5, #fdfaf7);
+  border: 1px solid #e1d4c1;
+  box-shadow: 0 10px 30px rgba(120, 95, 80, 0.15);
+  border-radius: 18px;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.inscription-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(100, 80, 70, 0.2);
+}
+
+h2 {
+  color: #4a5a47; /* vert sauge */
+  margin-bottom: 5px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #8b7b74;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  color: #4a5a47;
+  margin-bottom: 6px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbbfae;
+  background-color: #fffaf6;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  border-color: #7ba68f;
+  box-shadow: 0 0 0 3px rgba(123, 166, 143, 0.25);
+  outline: none;
+}
+
+.error-box {
+  background-color: #fce8e6;
+  border: 1px solid #f5b5ad;
+  border-radius: 10px;
+  padding: 10px 15px;
+  text-align: left;
+  margin-bottom: 20px;
+  color: #b94a48;
+  font-size: 13px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #f2a6b2;
+  background-size: 200% 200%;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.submit-btn:hover {
+  background-position: right center;
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(130, 100, 90, 0.2);
+}
+
+@media (max-width: 768px) {
+  .inscription-container {
+    width: 90%;
+    padding: 25px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  input, select {
+    font-size: 13px;
+    padding: 9px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inscription-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .submit-btn {
+    font-size: 13px;
+    padding: 9px;
+  }
+}
