@@ -1,0 +1,29 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Se connecter</h2>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="name" ngModel required placeholder="Entrez votre nom">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" ngModel required placeholder="Entrez votre email">
+
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name="password" ngModel required placeholder="Entrez votre mot de passe">
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" name="role" ngModel [value]="'proprietaire'">
+          Propriétaire
+        </label>
+        <label>
+          <input type="checkbox" name="role" ngModel [value]="'user'">
+          User
+        </label>
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.form.valid">Se connecter</button>
+    </form>
+  </div>
+</div>
