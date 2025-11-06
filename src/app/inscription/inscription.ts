@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inscription',
   imports: [FormsModule,CommonModule],
@@ -8,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './inscription.css',
 })
 export class Inscription {
+constructor(private router: Router) {}
+
   user = {
     name: '',
     email: '',
@@ -45,8 +48,10 @@ export class Inscription {
     if (this.errors.length > 0) return;
 
     console.log('Inscription réussie :', this.user);
-    alert('✅ Inscription réussie ! Bienvenue ' + this.user.name);
+    
     this.resetForm();
+
+    this.router.navigate(['/apropos']);
   }
 
   resetForm() {
