@@ -1,0 +1,93 @@
+.accueil {
+  background-color: #f8f1e4; /* beige doux */
+  color: #3f3d2e; /* brun olive doux */
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.hero {
+  margin-bottom: 4rem;
+}
+
+.accent {
+  color: #6b8e23; /* vert olive doux */
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin: 1rem 0 2rem 0;
+  color: #5b584f;
+}
+
+.btn {
+  background-color: #6b8e23;
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #5a7a1d;
+}
+
+.advantages {
+  background-color: #fffaf3;
+  padding: 3rem 2rem;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.advantages h2 {
+  color: #6b8e23;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: linear-gradient(145deg, #ffffff, #f4efdc);
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  color: #5e7a1a;
+}
+
+.card h3 {
+  color: #4a5d23;
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+  font-family: "Playfair Display", serif;
+}
+
+.card p {
+  color: #5b584f;
+  font-size: 1rem;
+  line-height: 1.6;
+}
