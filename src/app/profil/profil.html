@@ -1,0 +1,93 @@
+<div class="profil-wrapper">
+
+  <h2 class="profil-title">
+    Profil : {{ user.prenom }} {{ user.nom }}
+  </h2>
+
+  <div class="profil-content">
+
+    <!-- Formulaire -->
+    <form class="profil-form" (ngSubmit)="updateProfile()">
+       <label>CIN :</label>
+       <input type="text" [(ngModel)]="user.Cin" name="Cin">  
+
+      <label>Nom :</label>
+      <input type="text" [(ngModel)]="user.nom" name="nom">
+
+      <label>Prénom :</label>
+      <input type="text" [(ngModel)]="user.prenom" name="prenom">
+
+      <label>Email :</label>
+      <input type="email" [(ngModel)]="user.email" name="email">
+
+      <label>Téléphone :</label>
+      <input type="text" [(ngModel)]="user.tel" name="tel">
+
+      <label>Date de naissance :</label>
+      <input type="date" [(ngModel)]="user.date" name="date">
+
+      
+
+      <button type="submit" class="btn-save">Enregistrer</button>
+    </form>
+
+    <!-- Photo Profil -->
+    <div class="profil-photo-section">
+      <img class="profil-photo" [src]="user.photo || 'assets/user.png'" alt="Photo de profil">
+
+      <div class="photo-buttons">
+  <button class="btn-edit" (click)="changePhoto()">Changer</button>
+  <button class="btn-clear" (click)="clearPhoto()">Retirer</button>
+</div>
+
+    </div>
+
+    </div>
+<hr class="divider">
+
+<!-- LOGEMENTS FAVORIS -->
+<section class="section">
+  <h3>❤️ Logements Favoris</h3>
+
+  <div class="favoris-grid">
+    <div class="favoris-card" *ngFor="let f of favoris">
+      <img [src]="f.image" alt="">
+      <div class="favoris-info">
+        <h4>{{ f.titre }}</h4>
+        <p class="prix">{{ f.prix }} / mois</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RÉSERVATIONS -->
+<section class="section">
+  <h3>📅 Mes Réservations</h3>
+
+  <table class="reservations-table">
+    <tr>
+      <th>Logement</th>
+      <th>Date de réservation</th>
+      <th>Statut</th>
+    </tr>
+
+    <tr *ngFor="let r of reservations">
+      <td>{{ r.logement }}</td>
+      <td>{{ r.date }}</td>
+      <td>
+        <span class="status" 
+          [class.confirm]="r.statut === 'Confirmée'"
+          [class.wait]="r.statut === 'En attente'"
+          [class.cancel]="r.statut === 'Annulée'">
+          {{ r.statut }}
+        </span>
+      </td>
+    </tr>
+  </table>
+</section>
+
+
+  </div>
+

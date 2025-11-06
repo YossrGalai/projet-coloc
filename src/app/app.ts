@@ -1,12 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { Profil } from './profil/profil';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterModule,RouterOutlet,RouterLink,RouterLinkActive,Profil],
+  standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('projet-coloc');
+  
 }
+
