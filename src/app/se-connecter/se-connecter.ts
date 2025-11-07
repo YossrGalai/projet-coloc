@@ -50,7 +50,6 @@ goNext(form: NgForm) {
 
   console.log('Inscription réussie :', this.user);
    this.auth.setConnected(true);
-   this.auth.setUserRole(this.user.role);
   // Navigation selon le rôle
   if (this.user.role === 'colocataire') {
     this.router.navigate(['/profil']);
