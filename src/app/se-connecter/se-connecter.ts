@@ -66,12 +66,10 @@ resetForm() {
     password: '',
     confirmPassword: '',
     role: ''
-  };
-
-
-  /*retourAccueil() {
-    this.router.navigate(['/']);
-  }*/
+  }; 
 
 }
+retourAccueil() {
+    this.router.navigate(['/']);
+  }
 }
