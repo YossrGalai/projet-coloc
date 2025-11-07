@@ -32,6 +32,29 @@
   gap: 12px;
 }
 
+
+/* Style du lien A propos */
+.apropos-link {
+  margin: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #6d306b;
+  text-decoration: none;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+/* Effet au survol */
+.apropos-link:hover {
+  transform: scale(1.12);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #6d306b;
+}
+
+
+
+
 /* --- Boutons --- */
 .btn {
   padding: 10px 22px;
