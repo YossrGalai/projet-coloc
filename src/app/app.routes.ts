@@ -7,6 +7,8 @@ import { Logement } from './logement/logement';
 import {RechercheLogement} from  "./recherche-logement/recherche-logement";
 import {Inscription} from  "./inscription/inscription";
 import {SeConnecter} from  "./se-connecter/se-connecter";
+
+export  const routes: Routes = [
 import { Apropos } from './apropos/apropos';
 
  export const routes: Routes = [
@@ -24,6 +26,9 @@ import { Apropos } from './apropos/apropos';
   { path: 'logement', component: Logement,title:'Ajout de Logement' },
   { path: 'recherche-logement', component: RechercheLogement },
   { path: 'se-connecter', component: SeConnecter },
+  { path: 'inscription', component: Inscription }
+    
+] 
   { path: 'inscription', component: Inscription },
   { path: 'apropos', component: Apropos }
     

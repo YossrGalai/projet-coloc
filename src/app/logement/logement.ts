@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -32,8 +31,6 @@ export class Logement {
 
   Enregistrer() {   
     console.log("✅ Logement ajouté :", this.logement);
-     // Tu pourras plus tard l'envoyer vers un backend ici...
-
     this.router.navigate(['/proprietaire']);
   }
 

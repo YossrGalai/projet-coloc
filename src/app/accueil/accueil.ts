@@ -12,8 +12,8 @@ export class Accueil {
   goToInscription(){
     this.router.navigate(['/inscription']);
   }
-  goToConnexion(){
-    this.router.navigate(['/connexion']);
+  goToseConnecter(){
+    this.router.navigate(['/se-connecter']);
   }
   goToRecherche(){
     this.router.navigate(['/recherche-logement']);
