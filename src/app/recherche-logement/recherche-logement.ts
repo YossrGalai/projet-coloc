@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth';
+
 
 interface Logement {
   nom: string;
@@ -23,7 +25,7 @@ interface Logement {
 
   // Tableau de tous les logements disponibles
  export class RechercheLogement {
-  isConnected: boolean = true; 
+  constructor(private router: Router,public auth: AuthService) {}
   logements = [
     {
       nom: 'Appartement cosy à La Marsa',
@@ -95,7 +97,7 @@ interface Logement {
   this.filteredLogements = [];
   this.showResults = false;
 }
-constructor(private router: Router) {}
+
 
   retourAccueil() {
     this.router.navigate(['/']);
