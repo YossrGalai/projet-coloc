@@ -1,0 +1,105 @@
+/* Icône flottante */
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #0078ff;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Fenêtre de chat */
+.chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;       /* largeur fixe */
+  height: 400px;      /* hauteur fixe initiale */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  overflow: hidden;   /* empêche le chat de s'agrandir avec les messages */
+}
+
+/* Header du chat */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0078ff;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Messages */
+.messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.user {
+  background: #0078ff;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block; 
+  max-width: 80%; 
+  word-wrap: break-word; 
+  align-self: flex-end;
+  text-align: left;
+}
+
+.bot {
+  background: #f0f0f0;
+  color: black;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 5px;
+  align-self: flex-start;
+  text-align: left;
+}
+
+/* Zone d’entrée */
+.input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  background: #0078ff;
+  color: white;
+  cursor: pointer;
+}
