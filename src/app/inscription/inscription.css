@@ -79,7 +79,7 @@ input:focus, select:focus {
 
 .submit-btn {
   width: 100%;
-  background: #f2a6b2;
+  background: #fec6cf;
   background-size: 200% 200%;
   border: none;
   color: white;
@@ -96,6 +96,29 @@ input:focus, select:focus {
   transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(130, 100, 90, 0.2);
 }
+
+#btn-retour {
+  position: fixed;
+  bottom: 30px;
+  left: 10%;
+  transform: translateX(-50%);
+  background-color: #fec6cf;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(120, 95, 80, 0.25);
+}
+
+#btn-retour:hover {
+  background-color: #f2a6b2;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 8px 25px rgba(120, 95, 80, 0.35);
+}
+
+
 
 @media (max-width: 768px) {
   .inscription-container {

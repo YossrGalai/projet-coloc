@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inscription',
   imports: [FormsModule,CommonModule],
@@ -67,5 +68,11 @@ resetForm() {
     confirmPassword: '',
     role: ''
   };
+  constructor(private router: Router) {}
+
+  retourAccueil() {
+    this.router.navigate(['/']);
+  }
+
 }
 }

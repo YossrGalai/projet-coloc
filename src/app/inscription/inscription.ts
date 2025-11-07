@@ -51,7 +51,7 @@ constructor(private router: Router) {}
     
     this.resetForm();
 
-    this.router.navigate(['/apropos']);
+    this.router.navigate(['/recherche-logement']);
   }
 
   resetForm() {
@@ -62,5 +62,9 @@ constructor(private router: Router) {}
       confirmPassword: '',
       role: ''
     };
+  }
+
+  retourAccueil() {
+    this.router.navigate(['/']);
   }
 }

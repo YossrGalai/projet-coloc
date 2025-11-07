@@ -9,6 +9,9 @@ import {Inscription} from  "./inscription/inscription";
 import {SeConnecter} from  "./se-connecter/se-connecter";
 
 export  const routes: Routes = [
+import { Apropos } from './apropos/apropos';
+
+ export const routes: Routes = [
   { path: '', 
     component: Accueil ,
     title:' Page d\'acceuil '
@@ -26,3 +29,9 @@ export  const routes: Routes = [
   { path: 'inscription', component: Inscription }
     
 ] 
+  { path: 'inscription', component: Inscription },
+  { path: 'apropos', component: Apropos }
+    
+  
+
+ ]
