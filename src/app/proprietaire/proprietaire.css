@@ -117,7 +117,7 @@ input:focus {
 
 #btn-retour {
   position: fixed;
-  bottom: 30px;
+  bottom: 2px;
   left: 10%;
   transform: translateX(-50%);
   background-color: #fec6cf;
