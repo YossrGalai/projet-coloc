@@ -4,7 +4,7 @@
     <p>Trouvez votre colocation idéale facilement 🏠</p>
     <!--profile icon -->
 
-    <div class="user-icon" *ngIf="auth.isUserConnected()" >
+    <div class="user-icon" *ngIf="auth.isUserConnected()">
        <h4 >User Profile</h4>
    <img id=prof src="assets/profile.png" alt="l">
   </div>
@@ -51,7 +51,7 @@
   </section>
 
   <!-- Résultats de recherche dynamiques -->
-  <section class="results-section" *ngIf="showResults">
+  <section class="results-section" >
   <h3>Résultats suggérés ✨</h3>
   <div class="results" >
     <div class="card" *ngFor="let logement of logements">
