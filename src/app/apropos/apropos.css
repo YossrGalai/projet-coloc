@@ -144,6 +144,7 @@ p {
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
   box-shadow: 0 6px 18px rgba(120, 95, 80, 0.25);
+ 
 }
 
 #btn-retour:hover {
