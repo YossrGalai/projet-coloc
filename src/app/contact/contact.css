@@ -83,11 +83,3 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* CONTACT INFO */
-.contact-info {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 2px solid #e4d8ef;
-  text-align: center;
-  color: #6e5f7e;
-}
