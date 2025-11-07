@@ -4,7 +4,7 @@
     <p>Trouvez votre colocation idéale facilement 🏠</p>
     <!--profile icon -->
 
-    <div class="user-icon" *ngIf="isConnected">
+    <div class="user-icon" *ngIf="auth.isUserConnected()">
        <h4 >User Profile</h4>
    <img id=prof src="assets/profile.png" alt="l">
   </div>
@@ -51,14 +51,14 @@
   </section>
 
   <!-- Résultats de recherche dynamiques -->
-  <section class="results-section" *ngIf="showResults">
+  <section class="results-section" >
   <h3>Résultats suggérés ✨</h3>
   <div class="results" >
     <div class="card" *ngFor="let logement of logements">
       <h4>{{ logement.nom }}</h4>
       <p>{{ logement.pieces }} pièce{{ logement.pieces > 1 ? 's' : '' }} • {{ logement.prix }} TND / mois</p>
       <button >Voir détails</button>
-      <button (click)="reserver(logement)" *ngIf="isConnected"  >
+      <button (click)="reserver(logement)" *ngIf="auth.isUserConnected()"  >
         {{ logement.reserved ? 'Réservé ' : 'Réserver' }}
       </button>
     </div>
