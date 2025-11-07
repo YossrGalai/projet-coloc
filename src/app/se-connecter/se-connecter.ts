@@ -69,9 +69,8 @@ resetForm() {
   };
 
 
-  /*retourAccueil() {
-    this.router.navigate(['/']);
-  }*/
-
 }
+retourAccueil() {
+    this.router.navigate(['/']);
+  }
 }
