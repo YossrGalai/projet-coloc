@@ -1,12 +1,12 @@
-const { getConnection }= require('../db/connection');
 const oracledb = require('oracledb');
+const { getConnection }= require('../db/connection');
 
-exports.getAllColocataires = async (req, res) => {
+exports.getAllProprietaires = async (req, res) => {
   let connection;
   try {
     connection = await getConnection();
     const result = await connection.execute(
-      `SELECT * FROM utilisateur WHERE role = 'colocataire'`,
+      `SELECT * FROM utilisateur WHERE role = 'proprietaire'`,
       [],
       { outFormat: oracledb.OUT_FORMAT_OBJECT }
     );
@@ -19,17 +19,17 @@ exports.getAllColocataires = async (req, res) => {
   }
 };
 
-exports.deleteColocataire = async (req, res) => {
+exports.deleteProprietaire = async (req, res) => {
   const id = req.params.id;
   let connection;
   try {
     connection = await getConnection();
     await connection.execute(
-      `DELETE FROM utilisateur WHERE id_utilisateur = :id AND role = 'colocataire'`,
+      `DELETE FROM utilisateur WHERE id_utilisateur = :id AND role = 'proprietaire'`,
       [id],
       { autoCommit: true }
     );
-    res.status(200).json({ message: "Colocataire supprimé" });
+    res.status(200).json({ message: "Propriétaire supprimé" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message });
