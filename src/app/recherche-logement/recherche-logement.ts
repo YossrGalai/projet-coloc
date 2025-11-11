@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth';
 
+
 interface Logement {
   nom: string;
   image: string;
@@ -24,7 +25,7 @@ interface Logement {
 
   // Tableau de tous les logements disponibles
  export class RechercheLogement {
-   constructor(private router: Router,public auth: AuthService) {}
+  constructor(private router: Router,public auth: AuthService) {}
   logements = [
     {
       nom: 'Appartement cosy à La Marsa',

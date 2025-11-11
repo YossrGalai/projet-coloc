@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth';
+
 @Component({
   selector: 'app-inscription',
   imports: [FormsModule,CommonModule],
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './se-connecter.css',
 })
 export class SeConnecter {
-constructor(private router: Router) {}
+constructor(private router: Router,private auth: AuthService) {}
 
   user = {
     name: '',
@@ -47,7 +49,8 @@ goNext(form: NgForm) {
   if (this.errors.length > 0) return;
 
   console.log('Inscription réussie :', this.user);
-
+   this.auth.setConnected(true);
+   this.auth.setUserRole(this.user.role);
   // Navigation selon le rôle
   if (this.user.role === 'colocataire') {
     this.router.navigate(['/profil']);
@@ -57,6 +60,7 @@ goNext(form: NgForm) {
 
   // Réinitialiser le formulaire
   this.resetForm();
+
 }
 
 resetForm() {
@@ -66,8 +70,7 @@ resetForm() {
     password: '',
     confirmPassword: '',
     role: ''
-  }; 
-
+  };
 }
 retourAccueil() {
     this.router.navigate(['/']);

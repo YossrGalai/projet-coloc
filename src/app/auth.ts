@@ -16,4 +16,20 @@ export class AuthService {
     const stored = localStorage.getItem('connected');
     return stored === 'true' || this.connected;
   }
+
+  setUserRole(role: string) {
+    this.role = role;
+    localStorage.setItem('role', role);
+  }
+
+  getUserRole(): string {
+    return localStorage.getItem('role') || this.role;
+  }
+
+  logout() {
+    this.connected = false;
+    this.role = '';
+    localStorage.removeItem('connected');
+    localStorage.removeItem('role');
+  }
 }
