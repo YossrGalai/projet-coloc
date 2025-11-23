@@ -1,4 +1,6 @@
 <div class="p-6 bg-gray-100 min-h-screen">
+  <app-admin-dashboard ></app-admin-dashboard>
+  
   <h1 class="text-3xl font-bold mb-6">Tableau de bord Admin</h1>
 
   <!-- Colocataires -->
@@ -19,7 +21,7 @@
           <td class="px-4 py-2">{{user.EMAIL}}</td>
           <td class="px-4 py-2">{{user.CIN}}</td>
           <td class="px-4 py-2">
-            <button (click)="deleteUser(user.id_utilisateur,'colocataire')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+            <button (click)="deleteUser(user.CIN,user.role)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
           </td>
         </tr>
       </tbody>
@@ -44,7 +46,7 @@
           <td class="px-4 py-2">{{user.EMAIL}}</td>
           <td class="px-4 py-2">{{user.CIN}}</td>
           <td class="px-4 py-2">
-            <button (click)="deleteUser(user.id_utilisateur,'proprietaire')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+            <button (click)="deleteUser(user.CIN,user.role)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
           </td>
         </tr>
       </tbody>
@@ -78,7 +80,7 @@
           <td class="px-4 py-2">{{ log.NB_CHAMBRES }}</td>
           <td class="px-4 py-2">{{ log.SUPERFICIE}}</td>
           <td class="px-4 py-2">
-            <button (click)="deleteLogement(log.id_logement)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+            <button (click)="deleteLogement(log.ID_LOGEMENT)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
           </td>
         </tr>
       </tbody>

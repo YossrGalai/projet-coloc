@@ -27,9 +27,8 @@ export class AdminService {
   }
 
   // Supprimer un utilisateur (colocataire ou propriétaire)
-  deleteUser(id: number): Observable<any> {
-    // Angular ne peut pas distinguer le type ici, donc le backend doit gérer le type
-    return this.http.delete(`${this.apiUrl}/utilisateurs/${id}`);
+  deleteUser(cin: number, role: string){
+    return this.http.delete(`${this.apiUrl}/utilisateur/${cin}/${role}`);
   }
 
   // Supprimer un logement
