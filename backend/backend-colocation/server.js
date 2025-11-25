@@ -21,4 +21,3 @@ app.use('/api/utilisateur', utilisateurRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
-

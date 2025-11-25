@@ -53,6 +53,74 @@ router.get('/proprietaires', async (req, res) => {
   }
 });
 
+// POST pour ajouter un utilisateur
+router.post('/inscription', async (req, res) => {
+  console.log('Requête reçue :', req.body);
 
+  try {
+    let { cin, nom, prenom, email, mot_de_passe, role, telephone, date_naissance } = req.body;
+
+    // validation simple
+    if (!cin || !nom || !prenom || !email || !mot_de_passe || !role) {
+      return res.status(400).json({ message: 'Champs obligatoires manquants' });
+    }
+    if (isNaN(Number(cin))) {
+      return res.status(400).json({ message: 'CIN invalide' });
+    }
+
+    cin = Number(cin);
+
+    const db = await getConnection();
+   
+    // vérifier CIN+role
+    const check = await db.execute(
+      `SELECT * FROM utilisateur WHERE cin = :cin AND role = :role`,
+      { cin, role }
+    );
+    if (check.rows.length > 0) {
+      return res.status(409).json({ message: 'Cette CIN existe déjà pour ce rôle' });
+    }
+
+    // vérifier email
+    const emailCheck = await db.execute(
+      `SELECT * FROM utilisateur WHERE email = :email`,
+      { email }
+    );
+    if (emailCheck.rows.length > 0) {
+      return res.status(409).json({ message: 'Email déjà utilisé' });
+    }
+
+    // insertion
+    console.log({
+      cin, nom, prenom, email, mot_de_passe, role, telephone, date_naissance
+    });
+
+    if (!cin || isNaN(Number(cin))) return res.status(400).json({ message: 'CIN invalide' });
+    if (!email.includes('@')) return res.status(400).json({ message: 'Email invalide' });
+
+    await db.execute(
+      `INSERT INTO utilisateur
+      (cin, nom, prenom, email, mot_de_passe, role, telephone, date_naissance)
+      VALUES (:cin, :nom, :prenom, :email, :mot_de_passe, :role, :telephone, TO_DATE(:date_naissance,'YYYY-MM-DD'))`,
+      {
+        cin,
+        nom,
+        prenom,
+        email,
+        mot_de_passe,
+        role,
+        telephone: telephone || null,
+        date_naissance: date_naissance || null
+      }
+    );
+
+    await db.commit();
+    res.status(201).json({ message: 'Utilisateur ajouté avec succès' });
+
+  } catch (err) {
+    console.error('Erreur serveur :', err);
+    res.status(500).json({ message: 'Erreur serveur', error: err.message });
+  }
+});
 
 module.exports = router;
