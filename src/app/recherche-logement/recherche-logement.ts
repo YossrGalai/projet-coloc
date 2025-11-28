@@ -3,59 +3,29 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth';
+import {LogementService} from '../logement/logement.service';
+import {Logement} from '../logement/logement.model'
+import { HttpClientModule } from '@angular/common/http';
 
 
-interface Logement {
-  nom: string;
-  image: string;
-  ville: string;
-  type: string;
-  pieces: number;
-  prix: number;
-}
+
 
 @Component({
   selector: 'app-recherche-logement',
   standalone: true,              
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,HttpClientModule],
   templateUrl: './recherche-logement.html',
   styleUrls: ['./recherche-logement.css']
 })
 
 
   // Tableau de tous les logements disponibles
- export class RechercheLogement {
-  constructor(private router: Router,public auth: AuthService) {}
-  logements = [
-    {
-      nom: 'Appartement cosy à La Marsa',
-      ville: 'La Marsa',
-      type: 'Appartement',
-      image: 'assets/images/appart1.jpg',
-      pieces: 3,
-      prix: 800,
-      reserved: false
-    },
-    {
-      nom: 'Studio moderne à Tunis Centre',
-       ville: 'Ariana',
-      type: 'Maison',
-      image: 'assets/images/appart2.jpg',
-      pieces: 1,
-      prix: 500,
-      reserved: false
-    },
-    {
-      nom: 'Maison spacieuse à Ariana',
-      ville: 'Tunis Centre',
-      type: 'Studio',
-      image: 'assets/images/appart3.jpg',
-      pieces: 5,
-      prix: 1200,
-      reserved: false
-    }
-  ];
-
+ export class RechercheLogement  implements OnInit {
+  constructor(private router: Router,public auth: AuthService,private logementService: LogementService) {}
+  
+  logements: Logement[] = [];
+  prixFilter?: number;
+  adresseFilter?: string
   reserver(logement: any) {
     logement.reserved = !logement.reserved;
   }
@@ -70,10 +40,10 @@ interface Logement {
   // Pour contrôler l’affichage des résultats
     showResults: boolean = false;
 
-    applyFilter() {
+   /* applyFilter() {
   this.filteredLogements = this.logements.filter(logement => {
     const matchVille = this.searchVille
-      ? logement.ville.toLowerCase().includes(this.searchVille.toLowerCase())
+      ? logement.adresse.toLowerCase().includes(this.searchVille.toLowerCase())
       : true;
 
     const matchType = this.searchType
@@ -89,7 +59,18 @@ interface Logement {
 
   // Afficher la section résultats
   this.showResults = true;
+}*/
+applyFilter() {
+  this.logementService.getFilteredLogements(this.prixFilter, this.adresseFilter)
+    .subscribe(data => {
+      console.log("Données reçues du backend :", data);
+      this.logements = data;   // on remplit le tableau à afficher
+      this.showResults = true; // on affiche la section
+    });
 }
+
+
+
   resetSearch() {
   this.searchVille = '';
   this.searchType = '';
@@ -101,6 +82,10 @@ interface Logement {
 
   retourAccueil() {
     this.router.navigate(['/']);
+  }
+
+  ngOnInit(): void {
+    
   }
 }
 

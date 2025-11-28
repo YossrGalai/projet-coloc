@@ -5,3 +5,5 @@ const colocataireController = require('../controllers/colocataireController');
 router.get('/', colocataireController.getAll);
 
 module.exports = router;
+
+

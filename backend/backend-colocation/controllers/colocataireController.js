@@ -4,7 +4,7 @@ exports.getAll = async (req, res) => {
   let connection;
   try {
     connection = await connect();
-    const result = await connection.execute('SELECT * FROM reservation');
+    const result = await connection.execute('SELECT * FROM utilisateur');
     res.json(result.rows);
   } catch (err) {
     console.error(err);

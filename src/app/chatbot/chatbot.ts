@@ -28,6 +28,7 @@ export class Chatbot {
     { keywords: ['contrat', 'document'], answer: 'Ton contrat est disponible dans ton profil, section “Documents”.' },
     { keywords: ['quitter', 'départ'], answer: 'Préviens 30 jours à l’avance si tu veux quitter la colocation.' },
     { keywords: ['urgence', 'problème'], answer: 'En cas d’urgence, appelle le 198 (pompiers) ou le 190 (ambulance).' },
+    { keywords: ['stationnement', 'parking'], answer: 'Le stationnement se fait dans les places indiquées. Ne bloque pas le passage 🙏' }
  ];
 
   toggleChat() {

@@ -50,16 +50,19 @@
   </iframe>
   </section>
 
-  <!-- Résultats de recherche dynamiques -->
-  <section class="results-section" *ngIf="showResults">
+<!-- Results Section -->
+<section class="results-section" *ngIf="showResults">
   <h3>Résultats suggérés ✨</h3>
-  <div class="results" >
+  <div class="results">
     <div class="card" *ngFor="let logement of logements">
-      <h4>{{ logement.nom }}</h4>
-      <p>{{ logement.pieces }} pièce{{ logement.pieces > 1 ? 's' : '' }} • {{ logement.prix }} TND / mois</p>
-      <button >Voir détails</button>
-      <button (click)="reserver(logement)" *ngIf="auth.isUserConnected()"  >
-        {{ logement.reserved ? 'Réservé ' : 'Réserver' }}
+      <h4>{{ logement.titre }}</h4>
+      <p>{{ logement.description }}</p>
+      <p>{{ logement.adresse }}</p>
+      <p>{{ logement.prix }} TND / mois</p>
+
+      <button>Voir détails</button>
+      <button (click)="reserver(logement)" *ngIf="auth.isUserConnected()">
+        {{ logement.reserve ? 'Réservé' : 'Réserver' }}
       </button>
     </div>
   </div>

@@ -1,10 +1,10 @@
 const oracledb = require('oracledb');
 
-async function connect() {
+ async function getConnection() {
   try {
     return await oracledb.getConnection({
-      user: "system",
-      password: "yossr2004", 
+      user: "C##emnaa",
+      password: "000000",  
       connectString: "localhost:1521/XE" 
     });
   } catch (err) {
@@ -13,5 +13,5 @@ async function connect() {
   }
 }
 
-module.exports = connect;
+module.exports = { getConnection };
 
