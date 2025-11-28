@@ -1,6 +1,7 @@
-const connect = require('../db/connection');
+const { getConnection }= require('../db/connection');
+const oracledb = require('oracledb');
 
-exports.getAll = async (req, res) => {
+exports.getAllColocataires = async (req, res) => {
   let connection;
   try {
     connection = await connect();
@@ -24,11 +25,9 @@ exports.getAll = async (req, res) => {
  
   } catch (err) {
     console.error(err);
-    res.status(500).send("Erreur serveur");
+    res.status(500).json({ message: err.message });
   } finally {
-    if (connection) {
-      await connection.close();
-    }
+    if (connection) await connection.close();
   }
 };
 

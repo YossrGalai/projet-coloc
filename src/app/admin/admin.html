@@ -1,0 +1,89 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+  <app-admin-dashboard ></app-admin-dashboard>
+  
+  <h1 class="text-3xl font-bold mb-6">Tableau de bord Admin</h1>
+
+  <!-- Colocataires -->
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Colocataires</h2>
+    <table class="min-w-full bg-white shadow-md rounded">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-4 py-2">Nom</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">CIN</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of colocataires" class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2">{{user.NOM}}</td>
+          <td class="px-4 py-2">{{user.EMAIL}}</td>
+          <td class="px-4 py-2">{{user.CIN}}</td>
+          <td class="px-4 py-2">
+            <button (click)="deleteUser(user.CIN,user.role)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Propriétaires -->
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Propriétaires</h2>
+    <table class="min-w-full bg-white shadow-md rounded">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-4 py-2">Nom</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">CIN</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of proprietaires" class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2">{{user.NOM}}</td>
+          <td class="px-4 py-2">{{user.EMAIL}}</td>
+          <td class="px-4 py-2">{{user.CIN}}</td>
+          <td class="px-4 py-2">
+            <button (click)="deleteUser(user.CIN,user.role)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Logements -->
+  <section>
+    <h2 class="text-xl font-semibold mb-2">Logements</h2>
+    <table class="min-w-full bg-white shadow-md rounded">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-4 py-2">Titre</th>
+          <th class="px-4 py-2">Adresse</th>
+          <th class="px-4 py-2">Ville</th>
+          <th class="px-4 py-2">Prix</th>
+          <th class="px-4 py-2">Type</th>
+          <th class="px-4 py-2">Réservé</th>
+          <th class="px-4 py-2">Nb Chambres</th>
+          <th class="px-4 py-2">Superficie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logements" class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2">{{log.TITRE}}</td>
+          <td class="px-4 py-2">{{log.ADRESSE}}</td>
+          <td class="px-4 py-2">{{log.VILLE}}</td>
+          <td class="px-4 py-2">{{log.PRIX | currency:'TND'}}</td>
+          <td class="px-4 py-2">{{ log.TYPE }}</td>
+          <td class="px-4 py-2">{{ log.RESERVE }}</td>
+          <td class="px-4 py-2">{{ log.NB_CHAMBRES }}</td>
+          <td class="px-4 py-2">{{ log.SUPERFICIE}}</td>
+          <td class="px-4 py-2">
+            <button (click)="deleteLogement(log.ID_LOGEMENT)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -10,7 +10,7 @@
     <form class="proprietaire-form" (ngSubmit)="updateProfile()">
 
       <label>CIN :</label>
-      <input type="text" [(ngModel)]="user.Cin" name="Cin">
+      <input type="text" [(ngModel)]="user.cin" name="Cin">
 
       <label>Nom :</label>
       <input type="text" [(ngModel)]="user.nom" name="nom">
@@ -22,18 +22,18 @@
       <input type="email" [(ngModel)]="user.email" name="email">
 
       <label>Téléphone :</label>
-      <input type="text" [(ngModel)]="user.tel" name="tel">
+      <input type="text" [(ngModel)]="user.telephone" name="tel">
 
       <label>Date de naissance :</label>
-      <input type="date" [(ngModel)]="user.date" name="date">
+      <input type="date" [(ngModel)]="user.date_naissance" name="date">
 
       <button type="submit" class="btn-save">Enregistrer</button>
     </form>
 
     <!-- Photo Propriétaire -->
     <div class="proprietaire-photo-section">
-      <img class="proprietaire-photo" [src]="user.photo || 'assets/user.png'" alt="Photo">
-
+      <img class="proprietaire-photo" [src]="user.photo || 'assets/utilisateur'" alt="Photo">
+      <!-- <img class="proprietaire-photo" [src]="imagePath" alt="Photo">-->
       <div class="photo-buttons">
         <button class="btn-edit" (click)="changePhoto()">Changer</button>
         <button class="btn-clear" (click)="clearPhoto()">Retirer</button>
@@ -70,18 +70,21 @@
   <table class="reservations-table">
     <tr>
       <th>Logement</th>
-      <th>Date de demande</th>
+      <th>Date Début </th>
+      <th>Date Fin</th>
       <th>Actions</th>
     </tr>
 
     <tr *ngFor="let r of reservations">
-      <td>{{ r.logement }}</td>
-      <td>{{ r.date }}</td>
-      <td class="action-buttons">
-        <button class="btn-accept" (click)="accepterReservation(r)">Accepter</button>
-        <button class="btn-refuse" (click)="refuserReservation(r)">Refuser</button>
-      </td>
-    </tr>
+  <td>{{ r.logement }}</td>
+  <td>{{ r.date_debut }}</td>
+  <td>{{ r.date_fin }}</td>
+  <td class="action-buttons">
+    <button class="btn-accept" (click)="accepterReservation(r)">Accepter</button>
+    <button class="btn-refuse" (click)="refuserReservation(r)">Refuser</button>
+  </td>
+</tr>
+
   </table>
 </section>
 <button id="btn-retour" (click)="retourAccueil()">← Retour à l'accueil</button>

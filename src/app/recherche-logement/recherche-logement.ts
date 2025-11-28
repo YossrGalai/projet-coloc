@@ -63,6 +63,11 @@ import { RouterModule } from '@angular/router';
   // Pour contrôler l’affichage des résultats
     showResults: boolean = false;
 
+   /* applyFilter() {
+  this.filteredLogements = this.logements.filter(logement => {
+    const matchVille = this.searchVille
+      ? logement.adresse.toLowerCase().includes(this.searchVille.toLowerCase())
+      : true;
 
 applyFilter() { 
   console.log("Valeurs envoyées :", this.searchVille, this.searchPrix); 
@@ -88,6 +93,20 @@ applyFilter() {
 
 
 
+  // Afficher la section résultats
+  this.showResults = true;
+}*/
+applyFilter() {
+  this.logementService.getFilteredLogements(this.prixFilter, this.adresseFilter)
+    .subscribe(data => {
+      console.log("Données reçues du backend :", data);
+      this.logements = data;   // on remplit le tableau à afficher
+      this.showResults = true; // on affiche la section
+    });
+}
+
+
+
   resetSearch() {
   this.searchVille = '';
   this.searchType = '';
@@ -100,6 +119,7 @@ applyFilter() {
   retourAccueil() {
     this.router.navigate(['/']);
   }
+
 
   ngOnInit(): void { 
    const logements = JSON.parse(localStorage.getItem('logements') || '[]');

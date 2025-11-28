@@ -8,6 +8,7 @@
   box-shadow: 0 10px 28px rgba(0,0,0,0.18);
   font-family: "Poppins", sans-serif;
   backdrop-filter: blur(4px);
+  height: auto;
 }
 
 /* TITRE */
@@ -173,42 +174,7 @@
   padding-left: 8px;
 }
 
-/* FAVORIS */
-.favoris-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 20px;
-}
 
-.favoris-card {
-  background: rgba(255,255,255,0.85);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 14px rgba(0,0,0,.12);
-  backdrop-filter: blur(6px);
-  transition: transform .25s, box-shadow .25s;
-  cursor: pointer;
-}
-
-.favoris-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0,0,0,.18);
-}
-
-.favoris-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.favoris-info {
-  padding: 12px;
-}
-
-.prix {
-  color: #7a5c8b;
-  font-weight: 600;
-}
 
 /* RÉSERVATIONS */
 .reservations-table {
