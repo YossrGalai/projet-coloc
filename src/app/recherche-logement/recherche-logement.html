@@ -4,10 +4,12 @@
     <p>Trouvez votre colocation idéale facilement 🏠</p>
     <!--profile icon -->
 
-    <div class="user-icon" *ngIf="auth.isUserConnected()" >
-       <h4 >User Profile</h4>
-   <img id=prof src="assets/profile.png" alt="l">
-  </div>
+   <div class="user-icon" *ngIf="auth.isUserConnected()"  >
+  <a [routerLink]="['/profil']"  class="profil-link" >User Profile</a>
+  <a >
+    <img id="prof" src="assets/profile.png" alt="Profile">
+  </a>
+</div>
   </header>
 
   <!-- Barre de recherche -->
@@ -17,10 +19,10 @@
 
     <div class="search-bar">
       <!-- Ville -->
-      <input type="text" placeholder="Ville ou quartier..." [(ngModel)]="searchVille" />
+      <input type="text" placeholder="Ville ou quartier..." [(ngModel)]="searchVille" name="ville"/>
 
       <!-- Type -->
-      <select [(ngModel)]="searchType">
+      <select [(ngModel)]="searchType" name="type">
         <option value="">Type de logement</option>
         <option value="Appartement">Appartement</option>
         <option value="Studio">Studio</option>
@@ -29,7 +31,7 @@
       </select>
 
       <!-- Prix max -->
-      <input type="number" placeholder="Prix max (TND)" [(ngModel)]="searchPrix" min="0" />
+      <input type="number" placeholder="Prix max (TND)" [(ngModel)]="searchPrix" min="0" name="prix" />
 
       <!-- Boutons -->
       <button class="btn-search" (click)="applyFilter()">Rechercher</button>

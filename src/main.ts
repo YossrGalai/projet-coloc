@@ -18,6 +18,3 @@ bootstrapApplication(App , {
 
 }).catch(err => console.error(err));
   
-
-
-   

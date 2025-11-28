@@ -24,6 +24,14 @@ import { adminGuard } from './guards/admin.guards';
   { path: 'recherche-logement', component: RechercheLogement },
   { path: 'se-connecter', component: SeConnecter },
   { path: 'inscription', component: Inscription },
+  { path: 'apropos', component: Apropos }
+] 
+  
+  
+    
+  
+
+ 
   { path: 'apropos', component: Apropos },
   { path: 'login', component: LoginAdmin },
   { path: 'admin', component: Admin, canActivate: [adminGuard] },
