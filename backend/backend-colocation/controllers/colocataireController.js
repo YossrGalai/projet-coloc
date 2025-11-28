@@ -4,13 +4,9 @@ const oracledb = require('oracledb');
 exports.getAllColocataires = async (req, res) => {
   let connection;
   try {
-    connection = await getConnection();
-    const result = await connection.execute(
-      `SELECT * FROM utilisateur WHERE role = 'colocataire'`,
-      [],
-      { outFormat: oracledb.OUT_FORMAT_OBJECT }
-    );
-    res.status(200).json(result.rows);
+    connection = await connect();
+    const result = await connection.execute('SELECT * FROM utilisateur');
+    res.json(result.rows);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message });

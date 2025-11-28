@@ -6,3 +6,5 @@ router.get('/', colocataireController.getAllColocataires);
 router.delete('/:id', colocataireController.deleteColocataire);
 
 module.exports = router;
+
+
