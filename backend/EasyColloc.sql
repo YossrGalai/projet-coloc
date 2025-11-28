@@ -94,3 +94,8 @@ INSERT INTO reservation (cin_colocataire, role_colocataire, id_logement, date_de
 VALUES (30000003, 'colocataire', 3, TO_DATE('15-03-2025','DD-MM-YYYY'), TO_DATE('15-04-2025','DD-MM-YYYY'), 'refusée');
 
 commit;
+
+UPDATE logement SET type='Appartement', reserve='N' WHERE id_logement=44;
+UPDATE logement SET type='Studio', reserve='N' WHERE id_logement=45;
+UPDATE logement SET type='Maison', reserve='N' WHERE id_logement=46;
+COMMIT;
