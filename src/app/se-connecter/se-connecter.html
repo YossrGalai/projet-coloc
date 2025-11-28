@@ -4,55 +4,27 @@
   <form (ngSubmit)="goNext(form)" #form="ngForm" novalidate>
     <div class="form-group">
       <label>Nom</label>
-      <input type="text" name="name" class="text"[(ngModel)]="user.name" placeholder="Votre nom" minlength="3" required #nom="ngModel" />
-       <div *ngIf="nom.invalid && nom.dirty" class="error">
-          <div *ngIf="nom.errors?.['required']">
-            Le nom est obligatoire.
-          </div>
-          <div *ngIf="nom.errors?.['minlength']">
-            Le nom doit contenir au moins 3 caractères.
-          </div>
-       </div>
+      <input type="text" name="name" class="text"[(ngModel)]="user.nom" placeholder="Votre nom" required />
     </div>
 
     <div class="form-group">
       <label>Email</label>
-      <input type="email" name="email" class="text"[(ngModel)]="user.email" placeholder="exemple@mail.com" required email #emailCtrl="ngModel"/>
-     
-     <div *ngIf="emailCtrl.invalid && emailCtrl.dirty" class="error">
-         <div *ngIf="emailCtrl.errors?.['required']">
-           L'email est obligatoire.
-         </div>
-         <div *ngIf="emailCtrl.errors?.['email']">
-           L'email n'est pas valide.
-         </div>
-     </div>
-    </div> 
+      <input type="email" name="email" class="text"[(ngModel)]="user.email" placeholder="exemple@mail.com" required />
+    </div>
 
     <div class="form-group">
       <label>Mot de passe</label>
-      <input type="password" name="password" class="text"[(ngModel)]="user.password"  minlength="6" required  #pass="ngModel"/>
-    
-    <div *ngIf="pass.invalid && pass.dirty" class="error">
-       <div *ngIf="pass.errors?.['required']">
-         Le mot de passe est obligatoire.
-       </div>
-       <div *ngIf="pass.errors?.['minlength']">
-         Le mot de passe doit contenir au moins 6 caractères.
-        </div>
-    </div>
+      <input type="password" name="password" class="text"[(ngModel)]="user.mot_de_passe"  minlength="6" required />
     </div>
 
     <div class="radio-group">
   <label id="role">Choissisez Votre Rôle</label>
       
-     <input type="radio" name="role" class="btn"[(ngModel)]="user.role" value="proprietaire" required  >
+     <input type="radio" name="role" class="btn"[(ngModel)]="user.role" value="proprietaire" required>
      Propriétaire:
    
       <input type="radio" name="role" class="btn"[(ngModel)]="user.role" value="colocataire" required>
        Colocataire:
-      
-
    
   </div>
 
@@ -61,9 +33,11 @@
       <p *ngFor="let err of errors">⚠️ {{ err }}</p>
     </div>
 
-    <button type="submit" class="submit-btn"  >Se connecter</button>
+    <button type="sumbit" class="submit-btn"  >Se connecter</button>
   </form>
- <button id="btn-retour" (click)="retourAccueil()">← Retour à l'accueil</button>
+  <button id="btn-retour" (click)="retourAccueil()">← Retour à l'accueil</button>
 </div>
 
 </body>
+
+

@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -49,34 +50,6 @@ export class SeConnecter {
     );
   }
 
-  // Si erreurs → stop
-  if (this.errors.length > 0) return;
-
-  console.log('Inscription réussie :', this.user);
-   this.auth.setConnected(true);
-  // Navigation selon le rôle
-  if (this.user.role === 'colocataire') {
-    this.router.navigate(['/profil']);
-  } else if (this.user.role === 'proprietaire') {
-    this.router.navigate(['/proprietaire']);
-  }
-
-  // Réinitialiser le formulaire
-  this.resetForm();
-
-}
-
-resetForm() {
-  this.user = {
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: ''
-  }; 
-
-}
-retourAccueil() {
   resetForm() {
     this.user = { role: '' ,nom:'',email: '', mot_de_passe: ''};
   }
@@ -85,3 +58,4 @@ retourAccueil() {
     this.router.navigate(['/']);
   }
 }
+
