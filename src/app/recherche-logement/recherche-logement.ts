@@ -6,9 +6,10 @@ import { AuthService } from '../auth';
 import {LogementService} from '../logement/logement.service';
 import {Logement} from '../logement/logement.model'
 import { HttpClientModule } from '@angular/common/http';
+import { ReservationService } from '../services/reservation.service';
+import { RouterModule } from '@angular/router';
 
-
-
+ 
 
 @Component({
   selector: 'app-recherche-logement',
