@@ -9,9 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReservationService } from '../services/reservation.service';
 import { RouterModule } from '@angular/router';
 
-
-
-
+ 
 
 @Component({
   selector: 'app-recherche-logement',
