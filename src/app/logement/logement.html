@@ -1,5 +1,3 @@
-
-
 <div class="logement-wrapper">
 
   <h2 class="logement-title">Ajouter un Logement</h2>
@@ -12,11 +10,23 @@
     <label>Adresse :</label>
     <input type="text" [(ngModel)]="logement.adresse" name="adresse" required>
 
+    <label>Ville :</label>
+    <input type="text" [(ngModel)]="logement.ville" name="Ville" required>
+
     <label>Prix / mois :</label>
     <input type="number" [(ngModel)]="logement.prix" name="prix" required>
 
+    <label>Nb de Chambres :</label>
+    <input type="number" [(ngModel)]="logement.nbchambres" name="nbchambres" required>
+
+    <label>Superficie :</label>
+    <input type="number" [(ngModel)]="logement.superficie" name="Superficie" required>
+
     <label>Description :</label>
     <textarea [(ngModel)]="logement.description" name="description" required></textarea>
+
+    <label>Type :</label>
+    <input type="text" [(ngModel)]="logement.type" name="type" required>
 
     <label>Image :</label>
     <input type="file" (change)="onImageSelected($event)">

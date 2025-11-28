@@ -1,7 +1,7 @@
-
 /* WRAPPER */
 .proprietaire-wrapper {
   max-width: 900px;
+  
   margin: 60px auto;
   padding: 35px;
   border-radius: 18px;
@@ -117,7 +117,7 @@ input:focus {
 
 #btn-retour {
   position: fixed;
-  bottom: 2px;
+  bottom: -10px; 
   left: 10%;
   transform: translateX(-50%);
   background-color: #fec6cf;
@@ -239,3 +239,4 @@ input:focus {
   margin: 0 15px;  /* ajoute 5px à gauche et à droite entre les boutons */
   
 }
+
