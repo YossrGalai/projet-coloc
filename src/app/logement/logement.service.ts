@@ -7,7 +7,7 @@ import { Logement } from '../logement/logement.model';
   providedIn: 'root'
 })
 export class LogementService {
-  private apiUrl = 'http://localhost:3000/api/colocataires'; 
+  private apiUrl = 'http://localhost:3000/api/logement';
 
   constructor(private http: HttpClient) {}
 
@@ -15,23 +15,19 @@ export class LogementService {
     return this.http.get<Logement[]>(this.apiUrl);
   }
 
- getFilteredLogements(prix?: number, ville?: string, type?:string): Observable<Logement[]> {
+ getFilteredLogements(prix?: number, adresse?: string): Observable<Logement[]> {
   return this.getLogements().pipe(
-    map(logements => {
-        const filtered = logements.filter((l: Logement) => {
-        const matchPrix = prix == null || l.prix <= prix;
-        const matchVille = !ville  || l.ville.toLowerCase()==ville.toLowerCase();
-        const matchType = !type || l.type.toLowerCase() === type.toLowerCase();
-        return matchPrix && matchVille && matchType;
-      });
-      return filtered;
-    })
+    map(logements =>
+      logements.filter(l =>
+        (prix == null || l.prix === prix) &&
+        (adresse == null || l.adresse.toLowerCase().includes(adresse.toLowerCase()))
+      )
+    )
   );
 }
 
-updateReserve(id: number, reserve: string) {
-  return this.http.patch(`http://localhost:3000/api/colocataires/reserve/${id}`, { reserve });
-}
-
+ajouterLogement(logement: any, cin_proprietaire: number): Observable<any> {
+    return this.http.post(this.apiUrl, { ...logement, cin_proprietaire });
+  }
 
 }

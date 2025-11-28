@@ -1,7 +1,7 @@
 const { getConnection }= require('../db/connection');
 const oracledb = require('oracledb');
 
-exports.getAllColocataires = async (req, res) => {
+exports.getAll  = async (req, res) => {
   let connection;
   try {
     connection = await connect();

@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ReservationService } from '../services/reservation.service';
-import { AuthService } from '../auth'; 
-
 import { AuthService } from '../auth.service';
 import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -15,9 +12,6 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './profil.html',
   styleUrls: ['./profil.css']
 })
-export class Profil { 
-
-  constructor(private router: Router,public auth: AuthService,private reservationService: ReservationService) {}
 export class Profil implements OnInit{
 
   constructor(private router: Router, private auth: AuthService,private http: HttpClient ) {}

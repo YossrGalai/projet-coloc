@@ -6,9 +6,6 @@ import { AuthService } from '../auth';
 import {LogementService} from '../logement/logement.service';
 import {Logement} from '../logement/logement.model'
 import { HttpClientModule } from '@angular/common/http';
-import { ReservationService } from '../services/reservation.service';
-import { RouterModule } from '@angular/router';
-
 
 
 
@@ -16,7 +13,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-recherche-logement',
   standalone: true,              
-  imports: [CommonModule, FormsModule,HttpClientModule,RouterModule],
+  imports: [CommonModule, FormsModule,HttpClientModule],
   templateUrl: './recherche-logement.html',
   styleUrls: ['./recherche-logement.css']
 })
@@ -24,40 +21,20 @@ import { RouterModule } from '@angular/router';
 
   // Tableau de tous les logements disponibles
  export class RechercheLogement  implements OnInit {
-  constructor(private router: Router,public auth: AuthService,private logementService: LogementService,private reservationService: ReservationService,) {}
+  constructor(private router: Router,public auth: AuthService,private logementService: LogementService) {}
   
   logements: Logement[] = [];
+  prixFilter?: number;
+  adresseFilter?: string
   reserver(logement: any) {
-  logement.reserve = !logement.reserve;
-  const newValue = logement.reserve ? "Y" : "N";
-   console.log("New reserve value for DB:", newValue);
-
-  // 3. Envoyer la mise à jour au backend
-  this.logementService.updateReserve(logement.id, newValue)
-    .subscribe(() => {
-      const stored = JSON.parse(localStorage.getItem('logements') || '[]');
-      const index = stored.findIndex((l: any) => l.id === logement.id);
-
-      if (index !== -1) {
-        stored[index].reserve = logement.reserve;
-        localStorage.setItem('logements', JSON.stringify(stored));
-      }
-      if (logement.reserve) {
-        this.reservationService.addReservation(logement);
-        alert("Réservation ajoutée !");
-      } else {
-        this.reservationService.removeReservation(logement.titre);
-        alert("Réservation annulée !");
-      }
-
-    });
-}
- 
+    logement.reserved = !logement.reserved;
+  }
+  filteredLogements: any[] = [];
 
 
   // Valeurs de recherche
-   searchVille: string | null= null;
-   searchType: string | null = null;
+   searchVille: string = '';
+   searchType: string = '';
    searchPrix: number | null = null;
 
   // Pour contrôler l’affichage des résultats
@@ -69,29 +46,16 @@ import { RouterModule } from '@angular/router';
       ? logement.adresse.toLowerCase().includes(this.searchVille.toLowerCase())
       : true;
 
-applyFilter() { 
-  console.log("Valeurs envoyées :", this.searchVille, this.searchPrix); 
-  this.logementService.getFilteredLogements(this.searchPrix ?? undefined, this.searchVille ?? undefined, this.searchType ?? undefined) 
-  .subscribe(data => 
-    { console.log("Données reçues du backend :", data);
-     this.logements = data.filter(l => l.reserve === false);
-     this.showResults = true; // on affiche la section 
- }); }
+    const matchType = this.searchType
+      ? logement.type === this.searchType
+      : true;
 
-/*
-  applyFilter() {
-    this.logementService.getFilteredLogements(
-      this.searchPrix ?? undefined,
-      this.searchVille ?? undefined,
-      this.searchType ?? undefined
-    ).subscribe(data => {
-      console.log('Data from backend:', data); 
-      this.logements = data.filter(l => l.reserve === true);
-      this.showResults = true;
-    });
-  }*/
+    const matchPrix = this.searchPrix
+      ? logement.prix <= this.searchPrix
+      : true;
 
-
+    return matchVille && matchType && matchPrix;
+  });
 
   // Afficher la section résultats
   this.showResults = true;
@@ -111,7 +75,7 @@ applyFilter() {
   this.searchVille = '';
   this.searchType = '';
   this.searchPrix = null;
-  this.logements = [];
+  this.filteredLogements = [];
   this.showResults = false;
 }
 
@@ -120,14 +84,8 @@ applyFilter() {
     this.router.navigate(['/']);
   }
 
-
-  ngOnInit(): void { 
-   const logements = JSON.parse(localStorage.getItem('logements') || '[]');
-  this.logements = logements;
+  ngOnInit(): void {
     
   }
-
-
-
-
 }
+
