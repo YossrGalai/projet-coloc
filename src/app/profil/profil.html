@@ -87,6 +87,10 @@
     </tr>
   </table>
 </section>
+<!-- Bouton se déconnecter -->
+<button *ngIf="auth.isUserConnected()" (click)="auth.logout()"  class="btn-logout">
+  Se Déconnecter
+</button>
 
 <button id="btn-retour" (click)="retourAccueil()">← Retour à l'accueil</button>
 

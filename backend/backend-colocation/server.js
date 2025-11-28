@@ -12,6 +12,6 @@ app.use('/api/colocataires', colocataireRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Serveur Node.js démarré sur http://localhost:${PORT}`);
+  console.log(` Serveur Node.js démarré sur http://localhost:${PORT}`);
 });
 

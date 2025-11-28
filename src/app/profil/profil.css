@@ -68,6 +68,26 @@
   transition: .2s;
 }
 .btn-save:hover { background: #9d7cb3; }
+.btn-logout {
+  background-color: #ff4d4d; /* rouge vif */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 10px; /* espace si à côté de l'icône profil */
+}
+
+.btn-logout:hover {
+  background-color: #e60000; /* rouge plus foncé au survol */
+  transform: scale(1.05); /* effet léger zoom */
+}
+
+.btn-logout:active {
+  transform: scale(0.95); /* effet clic */
+}
 
 #btn-retour {
   position: fixed;

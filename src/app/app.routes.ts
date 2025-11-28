@@ -26,7 +26,6 @@ import { Apropos } from './apropos/apropos';
   { path: 'se-connecter', component: SeConnecter },
   { path: 'inscription', component: Inscription },
   { path: 'apropos', component: Apropos }
-    
 ] 
   
   

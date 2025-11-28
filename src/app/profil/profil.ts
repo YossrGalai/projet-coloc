@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ReservationService } from '../services/reservation.service';
+import { AuthService } from '../auth'; 
 
 @Component({
   selector: 'app-profil',
@@ -10,7 +12,9 @@ import { Router } from '@angular/router';
   templateUrl: './profil.html',
   styleUrls: ['./profil.css']
 })
-export class Profil {
+export class Profil { 
+
+  constructor(private router: Router,public auth: AuthService,private reservationService: ReservationService) {}
 
   // ---- Exemple de données utilisateur (plus tard on remplacera par API / Firebase) ----
   user = {
@@ -42,12 +46,13 @@ clearPhoto() {
     { titre: 'Studio à Agdal', prix: '3000 DH/mois', image: "https://source.unsplash.com/400x300/?studio,interior"  }
   ];
 
-  reservations = [
-    { logement: 'Appartement moderne à Rabat', date: '12/10/2025', statut: 'Confirmée' },
-    { logement: 'Studio à Agdal', date: '05/09/2025', statut: 'En attente' }
-  ];
+  reservations:any = [ ];
+ 
 
-  constructor(private router: Router) {}
+ ngOnInit() {
+  this.reservations = this.reservationService.getReservations();
+ }
+
 
   retourAccueil() {
     this.router.navigate(['/']);

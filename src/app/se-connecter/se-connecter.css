@@ -28,7 +28,11 @@ h2 {
   font-size: 26px;
   font-weight: 600;
 }
-
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
 .subtitle {
   color: #8b7b74;
   font-size: 14px;

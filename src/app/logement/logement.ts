@@ -15,7 +15,7 @@ export class Logement {
   logement = {
     titre: '',
     adresse: '',
-    prix: null,
+    prix: 0,
     description: '',
     image: ''
   };
