@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ReservationService } from '../services/reservation.service';
-import { AuthService } from '../auth'; 
+import { AuthService } from '../auth.service';
 import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 @Component({
@@ -13,12 +12,9 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './profil.html',
   styleUrls: ['./profil.css']
 })
-
-
-  
 export class Profil implements OnInit{
 
- constructor(private router: Router,public auth: AuthService,private reservationService: ReservationService) {}
+  constructor(private router: Router, private auth: AuthService,private http: HttpClient ) {}
   user = {
     cin: '',
     nom: '',
@@ -54,7 +50,7 @@ updateProfile() {
     date_naissance: this.user.date_naissance
   };
 
-  this.http.put(`http://localhost:3000/api/colocataire/${this.user.cin}`, body)
+  this.http.put(http://localhost:3000/api/colocataire/${this.user.cin}, body)
     .subscribe({
       next: (res: any) => {
         console.log("Réponse serveur :", res);
@@ -84,7 +80,7 @@ clearPhoto() {
   }
 
   loadReservations(cin: string) {
-  this.http.get(`http://localhost:3000/api/colocataire/${cin}/reservations`)
+  this.http.get(http://localhost:3000/api/colocataire/${cin}/reservations)
     .subscribe({
       next: (res: any) => {
         if (res.success) {
