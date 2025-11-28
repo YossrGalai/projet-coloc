@@ -1,6 +1,8 @@
 const oracledb = require('oracledb');
 
-async function connect() {
+oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+
+async function getConnection() {
   try {
     return await oracledb.getConnection({
       user: "system",
@@ -13,5 +15,5 @@ async function connect() {
   }
 }
 
-module.exports = connect;
+module.exports = {getConnection};
 
