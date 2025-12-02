@@ -16,11 +16,7 @@ export class AuthService {
     this.connected = value;
     localStorage.setItem('connected', value.toString());
   }
-  logout() {
-  this.connected = false;
-  localStorage.removeItem('connected');
-  this.router.navigate(['/']);
-}
+ 
 
   isUserConnected(): boolean {
       return this.connected;
@@ -40,5 +36,6 @@ export class AuthService {
     this.role = '';
     localStorage.removeItem('connected');
     localStorage.removeItem('role');
+    this.router.navigate(['/']);
   }
 }

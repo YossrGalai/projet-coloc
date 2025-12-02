@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -15,10 +16,9 @@ export class SeConnecter {
 constructor(private router: Router,private auth: AuthService) {}
 
   user = {
-    name: '',
+    nom: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    mot_de_passe: '',
     role: ''
   };
 
@@ -32,13 +32,13 @@ goNext(form: NgForm) {
   form.form.markAllAsTouched();
 
   // Vérifications
-  if (!this.user.name.trim()) {
+  if (!this.user.nom.trim()) {
     this.errors.push("Le nom est obligatoire.");
   }
   if (!this.user.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
     this.errors.push("L'adresse e-mail n'est pas valide.");
   }
-  if (this.user.password.length < 6) {
+  if (this.user.mot_de_passe.length < 6) {
     this.errors.push("Le mot de passe doit contenir au moins 6 caractères.");
   }
   if (!this.user.role) {
@@ -64,10 +64,9 @@ goNext(form: NgForm) {
 
 resetForm() {
   this.user = {
-    name: '',
+    nom: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    mot_de_passe: '',
     role: ''
   }; 
 

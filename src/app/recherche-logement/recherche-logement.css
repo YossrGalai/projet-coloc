@@ -15,7 +15,6 @@ header {
   padding: 15px 10%;
   background: linear-gradient(90deg, #f2e5eb, #d0e7f0);
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  position: sticky;
   top: 0;
   z-index: 10;
 }

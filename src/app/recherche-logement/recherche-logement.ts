@@ -73,6 +73,18 @@ applyFilter() {
      this.showResults = true; // on affiche la section 
  }); }
 
+/*
+  applyFilter() {
+    this.logementService.getFilteredLogements(
+      this.searchPrix ?? undefined,
+      this.searchVille ?? undefined,
+      this.searchType ?? undefined
+    ).subscribe(data => {
+      console.log('Data from backend:', data); 
+      this.logements = data.filter(l => l.reserve === true);
+      this.showResults = true;
+    });
+  }*/
 
 
 
@@ -94,6 +106,8 @@ applyFilter() {
   this.logements = logements;
     
   }
+
+
 
 
 }
