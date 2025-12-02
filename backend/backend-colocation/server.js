@@ -12,7 +12,8 @@ app.use(express.json());
 
 app.use('/api', authRoutes);                   
 app.use('/api/colocataires', colocataireRoutes);
-//router.get("/test", (req, res) => res.send("Route Auth OK"));
+const logementRoutes = require('./routes/logementRoutes');
+app.use('/api/logement', logementRoutes);
 
 
 const PORT = 3000;
