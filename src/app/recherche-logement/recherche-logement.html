@@ -3,11 +3,13 @@
     <h1>EasyColoc</h1>
     <p>Trouvez votre colocation idéale facilement 🏠</p>
     <!--profile icon -->
+   <div class="user-icon" *ngIf="auth.isUserConnected()"  >
+  <a [routerLink]="['/profil']"  class="profil-link" >User Profile</a>
+  <a >
+    <img id="prof" src="assets/profile.png" alt="Profile">
+  </a>
+</div>
 
-    <div class="user-icon" *ngIf="auth.isUserConnected()" >
-       <h4 >User Profile</h4>
-   <img id=prof src="assets/profile.png" alt="l">
-  </div>
   </header>
 
   <!-- Barre de recherche -->

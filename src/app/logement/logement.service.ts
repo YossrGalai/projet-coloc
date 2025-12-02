@@ -15,12 +15,14 @@ export class LogementService {
     return this.http.get<Logement[]>(this.apiUrl);
   }
 
- getFilteredLogements(prix?: number, adresse?: string): Observable<Logement[]> {
+ getFilteredLogements(prix?: number, adresse?: string, type?: string): Observable<Logement[]> {
   return this.getLogements().pipe(
     map(logements =>
       logements.filter(l =>
         (prix == null || l.prix === prix) &&
-        (adresse == null || l.adresse.toLowerCase().includes(adresse.toLowerCase()))
+        (adresse == null || l.adresse.toLowerCase().includes(adresse.toLowerCase())) &&
+        (type == null || l.type.toLowerCase() === type.toLowerCase())
+
       )
     )
   );
@@ -29,5 +31,9 @@ export class LogementService {
 ajouterLogement(logement: any, cin_proprietaire: number): Observable<any> {
     return this.http.post(this.apiUrl, { ...logement, cin_proprietaire });
   }
+  
+updateReserve(id: number, reserve: string) {
+  return this.http.patch(`http://localhost:3000/api/colocataires/reserve/${id}`, { reserve });
+}
 
 }

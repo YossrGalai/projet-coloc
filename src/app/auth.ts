@@ -16,13 +16,26 @@ export class AuthService {
     this.connected = value;
     localStorage.setItem('connected', value.toString());
   }
-  logout() {
-  this.connected = false;
-  localStorage.removeItem('connected');
-  this.router.navigate(['/']);
-}
+ 
 
   isUserConnected(): boolean {
       return this.connected;
+  }
+
+  setUserRole(role: string) {
+    this.role = role;
+    localStorage.setItem('role', role);
+  }
+
+  getUserRole(): string {
+    return localStorage.getItem('role') || this.role;
+  }
+
+  logout() {
+    this.connected = false;
+    this.role = '';
+    localStorage.removeItem('connected');
+    localStorage.removeItem('role');
+    this.router.navigate(['/']);
   }
 }
