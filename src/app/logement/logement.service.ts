@@ -31,5 +31,9 @@ export class LogementService {
 ajouterLogement(logement: any, cin_proprietaire: number): Observable<any> {
     return this.http.post(this.apiUrl, { ...logement, cin_proprietaire });
   }
+  
+updateReserve(id: number, reserve: string) {
+  return this.http.patch(`http://localhost:3000/api/colocataires/reserve/${id}`, { reserve });
+}
 
 }
