@@ -193,6 +193,12 @@ router.put("/colocataire/:cin", async (req, res) => {
 
 router.get("/colocataire/:cin/reservations", async (req, res) => {
     const cin = Number(req.params.cin);
+    if (isNaN(cin)) {
+        return res.status(400).json({
+            success: false,
+            message: "Paramètre CIN invalide"
+        });
+    }
 
     try {
         const connection = await getConnection();

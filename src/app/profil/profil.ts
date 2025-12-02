@@ -50,7 +50,8 @@ updateProfile() {
     date_naissance: this.user.date_naissance
   };
 
-  this.http.put("http://localhost:3000/api/colocataire/${this.user.cin}", body)
+  this.http.put(`http://localhost:3000/api/colocataire/${this.user.cin}`, body)
+
     .subscribe({
       next: (res: any) => {
         console.log("Réponse serveur :", res);
@@ -80,7 +81,8 @@ clearPhoto() {
   }
 
   loadReservations(cin: string) {
-  this.http.get("http://localhost:3000/api/colocataire/${cin}/reservations")
+  this.http.get(`http://localhost:3000/api/colocataire/${cin}/reservations`)
+
     .subscribe({
       next: (res: any) => {
         if (res.success) {
