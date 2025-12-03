@@ -15,7 +15,7 @@ export class AdminService {
   getColocataires(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/colocataires`);
   }
-
+  
   // Récupérer tous les propriétaires
   getProprietaires(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/proprietaires`);
