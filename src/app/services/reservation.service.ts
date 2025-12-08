@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,36 @@ export class ReservationService {
 
   getReservations() {
     return this.reservations;
+  }
+}
+*/
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+@Injectable({
+  providedIn: 'root'
+})
+export class ReservationService {
+
+  // BehaviorSubject holds the current array of reservations
+  private reservationsSubject = new BehaviorSubject<any[]>([]);
+  
+  // Observable for components to subscribe
+  reservations$ = this.reservationsSubject.asObservable();
+
+  constructor(private http: HttpClient) {}
+   private apiUrl = 'http://localhost:3000/reservations';
+  // Add a reservation
+  addReservation(data: any) {
+  return this.http.post(`http://localhost:3000/reservations/${data.logementId}`, data);
+}
+
+  removeReservation(data: any) {
+  return this.http.delete(`http://localhost:3000/reservations/${data.logementId}`, {body:{ cin: data.cin }});
+  }
+
+  // get current value
+  getReservations() {
+    return this.reservationsSubject.value;
   }
 }

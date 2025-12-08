@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth';
+import { AuthService } from '../auth.service';
 import {LogementService} from '../logement/logement.service';
 import {Logement} from '../logement/logement.model'
 import { HttpClientModule } from '@angular/common/http';
@@ -25,40 +25,63 @@ import { RouterModule } from '@angular/router';
   // Tableau de tous les logements disponibles
  export class RechercheLogement  implements OnInit {
   constructor(private router: Router,public auth: AuthService,private logementService: LogementService,private reservationService: ReservationService,) {}
+  villes: string[] = [
+  'Tunis', 'Ariana', 'Manouba', 'Ben Arous',
+  'Nabeul', 'Sousse', 'Monastir', 'Sfax',
+  'Bizerte', 'Gabès', 'Gafsa', 'Kairouan',
+  'Kasserine', 'Mahdia', 'Médenine', 'Tataouine',
+  'Tozeur', 'Zaghouan', 'Kebili', 'Siliana'
+  ];
+
+  selectedLogement: any = null;
+
+
+voirDetail(logement: any) {
+  this.selectedLogement = logement; 
+
+}
+
+
+
+
+
+
+
   
   logements: Logement[] = [];
   reserver(logement: any) {
+
+  // Toggle only for the UI 
   logement.reserve = !logement.reserve;
-  const newValue = logement.reserve ? "Y" : "N";
-   console.log("New reserve value for DB:", newValue);
+  // Récupérer les infos de l'utilisateur connecté
+  const user = this.auth.getUserData();
+  const payload = {
+    logementId: logement.id,
+    cin: user.cin,
+    role: user.role,
+    date_debut: new Date().toISOString().slice(0, 10) // Format YYYY-MM-DD
+  };
+  if (logement.reserve) {
 
-  // 3. Envoyer la mise à jour au backend
-  this.logementService.updateReserve(logement.id, newValue)
-    .subscribe(() => {
-      const stored = JSON.parse(localStorage.getItem('logements') || '[]');
-      const index = stored.findIndex((l: any) => l.id === logement.id);
-
-      if (index !== -1) {
-        stored[index].reserve = logement.reserve;
-        localStorage.setItem('logements', JSON.stringify(stored));
-      }
-      if (logement.reserve) {
-        this.reservationService.addReservation(logement);
-        alert("Réservation ajoutée !");
-      } else {
-        this.reservationService.removeReservation(logement.titre);
-        alert("Réservation annulée !");
-      }
-
+    // INSERT in the table RESERVER
+    this.reservationService.addReservation(payload).subscribe(() => {
+      alert("Réservation ajoutée !");
     });
+
+  } else {
+    // DELETE from the table RESERVER
+    this.reservationService.removeReservation({ logementId: logement.id ,cin: user.cin }).subscribe(() => {
+      alert("Réservation annulée !");
+    });
+  }
 }
- 
 
 
   // Valeurs de recherche
    searchVille: string | null= null;
    searchType: string | null = null;
    searchPrix: number | null = null;
+   searchQuartier: string | null= null;
 
   // Pour contrôler l’affichage des résultats
     showResults: boolean = false;
@@ -73,24 +96,11 @@ applyFilter() {
      this.showResults = true; // on affiche la section 
  }); }
 
-/*
-  applyFilter() {
-    this.logementService.getFilteredLogements(
-      this.searchPrix ?? undefined,
-      this.searchVille ?? undefined,
-      this.searchType ?? undefined
-    ).subscribe(data => {
-      console.log('Data from backend:', data); 
-      this.logements = data.filter(l => l.reserve === true);
-      this.showResults = true;
-    });
-  }*/
-
-
 
   resetSearch() {
-  this.searchVille = '';
-  this.searchType = '';
+  this.searchVille = null;
+  this.searchType = null;
+  this.searchQuartier=null;
   this.searchPrix = null;
   this.logements = [];
   this.showResults = false;
@@ -103,7 +113,7 @@ applyFilter() {
 
   ngOnInit(): void { 
    const logements = JSON.parse(localStorage.getItem('logements') || '[]');
-  this.logements = logements;
+   this.logements = logements;
     
   }
 

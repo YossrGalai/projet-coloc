@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ReservationService } from '../services/reservation.service';
 @Component({
   selector: 'app-profil',
   standalone: true,
@@ -14,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Profil implements OnInit{
 
-  constructor(private router: Router, private auth: AuthService,private http: HttpClient ) {}
+  constructor(private router: Router, private auth: AuthService,private http: HttpClient, private reservationService: ReservationService ) {}
   user = {
     cin: '',
     nom: '',
@@ -35,6 +36,10 @@ export class Profil implements OnInit{
     this.user.date_naissance = u.date_naissance;
 
     this.loadReservations(u.cin);
+    // Subscribe to reactive reservations
+    this.reservationService.reservations$.subscribe(res => {
+    this.reservations = res;
+      });
 
     
   }
@@ -93,5 +98,9 @@ clearPhoto() {
         console.error("Erreur chargement réservations :", err);
       }
     });
+}
+
+ logout() {
+  this.auth.logout();
 }
 }

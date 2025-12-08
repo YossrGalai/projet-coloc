@@ -3,6 +3,8 @@ export interface Logement {
   adresse: string;
   ville:string;
   prix: number;
+  chambres:number;
+  superficie:number;
   description: string;
   image: string;
   type: string;

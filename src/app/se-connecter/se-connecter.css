@@ -89,6 +89,12 @@ label {
   margin-top: 8px;  
   margin-bottom: 10px; 
 }
+.Error {
+  color: #e00000;       /* bright red */
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 5px;
+}
 
 .submit-btn {
   width: 100%;

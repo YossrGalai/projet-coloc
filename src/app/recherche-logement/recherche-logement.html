@@ -3,7 +3,7 @@
     <h1>EasyColoc</h1>
     <p>Trouvez votre colocation idéale facilement 🏠</p>
     <!--profile icon -->
-   <div class="user-icon" *ngIf="auth.isUserConnected()"  >
+   <div class="user-icon" *ngIf="auth.isConnected()"  >
   <a [routerLink]="['/profil']"  class="profil-link" >User Profile</a>
   <a >
     <img id="prof" src="assets/profile.png" alt="Profile">
@@ -14,16 +14,22 @@
 
   <!-- Barre de recherche -->
   <section class="search-section">
-    <h2>Recherchez votre logement idéal</h2>
-    <p>Trouvez facilement une colocation selon la localisation, le type ou le prix.</p>
+    <h4>Recherchez votre logement idéal</h4>
 
-    <div class="search-bar">
-      <!-- Ville -->
-      <input type="text" placeholder="Ville ou quartier..." [(ngModel)]="searchVille" />
+ 
+     <!-- Select Ville -->
+      <select [(ngModel)]="searchVille" class="search-select">
+       <option [ngValue]="null" value="" disabled selected>Choisir un gouvernorat...</option>
+       <option *ngFor="let ville of villes" [value]="ville">{{ ville }}</option>
+      </select>
+
+     <!-- Input Quartier -->
+     <input  type="text" placeholder="Quartier..."  [(ngModel)]="searchQuartier" class="search-input" />
+
 
       <!-- Type -->
       <select [(ngModel)]="searchType">
-        <option value="">Type de logement</option>
+        <option value="" aria-placeholder="Type de logement" [ngValue]="null" selected disabled>Type de logement</option>
         <option value="Appartement">Appartement</option>
         <option value="Studio">Studio</option>
         <option value="Maison">Maison</option>
@@ -36,7 +42,7 @@
       <!-- Boutons -->
       <button class="btn-search" (click)="applyFilter()">Rechercher</button>
       <button class="btn-reset" (click)="resetSearch()">Réinitialiser</button>
-    </div>
+
   </section>
 
   <!-- Carte Google Maps -->
@@ -58,17 +64,29 @@
   <div class="results">
     <div class="card" *ngFor="let logement of logements">
       <h4>{{ logement.titre }}</h4>
-      <p>{{ logement.description }}</p>
-      <p>{{ logement.adresse }}</p>
-      <p>{{ logement.prix }} TND / mois</p>
 
-      <button>Voir détails</button>
-      <button (click)="reserver(logement)" *ngIf="auth.isUserConnected()">
+      <button (click)="voirDetail(logement)">Voir détails</button>
+
+      <!-- Détails du logement sélectionné -->
+      <div *ngIf="selectedLogement === logement" class="detail-logement">
+        <h2>Détails du logement</h2>
+        <p><strong>Adresse :</strong> {{ selectedLogement.adresse }}</p>
+        <p><strong>Type:</strong> {{ selectedLogement.type }}</p>
+        <p><strong>Prix :</strong> {{ selectedLogement.prix }} TND / mois</p>
+        <p><strong>Nombre de chambres :</strong> {{ selectedLogement.chambres }}</p>
+        <p><strong>Superficie :</strong> {{ selectedLogement.superficie }} m²</p>
+        <p><strong>Description :</strong> {{ selectedLogement.description }}</p>
+        <button (click)="selectedLogement = null">Fermer</button>
+      </div>
+
+      <button (click)="reserver(logement)" *ngIf="auth.isConnected()">
         {{ logement.reserve ? 'Réservé' : 'Réserver' }}
       </button>
+
     </div>
   </div>
 </section>
+
 <button id="btn-retour" (click)="retourAccueil()">← Retour à l'accueil</button>
 </div>
 
