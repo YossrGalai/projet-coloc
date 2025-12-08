@@ -44,13 +44,14 @@ exports.getAllLogements = async (req, res) => {
   prix: row[4],
   chambres: row[5],
   superficie: row[6],
-  photo: row[7],
-  type: row[8],
-  reserve: row[9] === 'Y',
-  proprietaireId: row[10],
-  proprietaireType: row[11],
-  description: row[12]
+  description: row[7],
+  photo: row[8],
+  type: row[9],
+  reserve: row[10] === 'Y',
+  proprietaireId: row[11],
+  proprietaireType: row[12]
 }));
+
     res.json(logements);
  
   } catch (err) {
