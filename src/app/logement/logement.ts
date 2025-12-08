@@ -23,18 +23,24 @@ export class Logement {
     superficie:0,
     type:'',
     description: '',
-    image: ''
+    photo: ''
   };
 
+
+
+
+
+  
   onImageSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => this.logement.image = reader.result as string;
+      reader.onload = () => this.logement.photo = reader.result as string;
       reader.readAsDataURL(file);
     }
   }
 
+  
  
 Enregistrer() {
   const user = this.auth.getUserData();
@@ -46,7 +52,7 @@ Enregistrer() {
     ville: this.logement.ville.substring(0,100),
     description: this.logement.description.substring(0,255),
     type: this.logement.type.substring(0,50),
-    image: this.logement.image?.substring(0,255) || ''
+    image: this.logement.photo?.substring(0,255) || ''
   };
 
   this.logementService.ajouterLogement(payload, user.cin).subscribe(

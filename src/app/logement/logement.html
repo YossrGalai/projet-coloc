@@ -30,11 +30,10 @@
     <label>Type :</label>
     <input type="text" [(ngModel)]="logement.type" name="type" required>
 
-    <label>Image :</label>
-    <input type="file" (change)="onImageSelected($event)">
+    
 
-    <div class="image-preview" *ngIf="logement.image">
-      <img [src]="logement.image" alt="Aperçu">
+    <div class="image-preview" *ngIf="logement.photo">
+      <img [src]="logement.photo" alt="Aperçu">
     </div>
 
     <button class="btn-save" type="submit">✅ Ajouter le Logement</button>

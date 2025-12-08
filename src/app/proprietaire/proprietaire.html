@@ -32,10 +32,9 @@
 
     <!-- Photo Propriétaire -->
     <div class="proprietaire-photo-section">
-      <img class="proprietaire-photo" [src]="user.photo || 'assets/utilisateur'" alt="Photo">
-      <!-- <img class="proprietaire-photo" [src]="imagePath" alt="Photo">-->
+      <img [src]="user.photo" alt="Profile Image">
       <div class="photo-buttons">
-        <button class="btn-edit" (click)="changePhoto()">Changer</button>
+       
         <button class="btn-clear" (click)="clearPhoto()">Retirer</button>
       </div>
     </div>
@@ -52,7 +51,7 @@
   </div>
   <div class="ajoute-grid">
     <div class="ajoute-card" *ngFor="let f of logementsAjoutes">
-      <img [src]="f.image" alt="">
+      <img [src]="f.photo" alt="logement Image">
       <div class="ajoute-info">
         <h4>{{ f.titre }}</h4>
         <p class="prix">{{ f.prix }} / mois</p>

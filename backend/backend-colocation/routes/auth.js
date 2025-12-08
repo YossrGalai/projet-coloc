@@ -43,7 +43,10 @@ router.post("/se-connecter/proprietaire", async (req, res) => {
                     : null,
                     role: user.ROLE.toLowerCase(),
                     date_inscription: user.DATE_INSCRIPTION,
-                    //photo:user.PHOTO
+                   photo: user.PHOTO 
+    ? `/uploads/utilisateur/${user.PHOTO.split('/').pop()}` 
+    : null
+
                 }
             });
         } else {
@@ -91,7 +94,11 @@ router.post("/se-connecter/profil", async (req, res) => {
                      ? user.DATE_NAISSANCE.toLocaleDateString('fr-CA') 
                         : null,
                     role: user.ROLE.toLowerCase(),
-                    date_inscription: user.DATE_INSCRIPTION
+                    date_inscription: user.DATE_INSCRIPTION,
+                    photo: user.PHOTO 
+    ? `/uploads/utilisateur/${user.PHOTO.split('/').pop()}` 
+    : null
+
                 }
             });
         } else {
@@ -255,7 +262,10 @@ router.get("/proprietaire/:cin/logements", async (req, res) => {
             data: result.rows.map(l => ({
                 titre: l.TITRE,
                 prix: l.PRIX,
-                image: l.PHOTO
+                 photo: l.PHOTO 
+    ? `/uploads/logement/${l.PHOTO.split('/').pop()}` 
+    : '/assets/default-logement.png'
+
             }))
         });
 
@@ -395,7 +405,7 @@ router.post("/logement", async (req, res) => {
                 nb_chambres,
                 superficie,
                 description,
-                photo: image,
+                photo: `/uploads/logement/${titre}.jpg`,
                 type,
                 cin_proprietaire
             },
@@ -411,51 +421,7 @@ router.post("/logement", async (req, res) => {
     }
 });
 
-//  Ajouter une réservation
-router.post("/reservation", async (req, res) => {
-  const {
-    Cin,
-    date_debut,
-    date_fin,
-    message,
-  } = req.body;
 
-  try {
-    const connection = await getConnection();
-
-    await connection.execute(
-      `INSERT INTO reservation (
-        cin_colocataire,
-        role_colocataire,
-        id_logement,
-        date_debut,
-        date_fin,
-        statut
-      ) VALUES (
-        :cin,
-        'colocataire',
-        1,  -- ⚠️ À remplacer : ID logement choisi
-        TO_DATE(:date_debut, 'YYYY-MM-DD'),
-        TO_DATE(:date_fin, 'YYYY-MM-DD'),
-        'en_attente'
-      )`,
-      {
-        cin: Cin,
-        date_debut,
-        date_fin
-      },
-      { autoCommit: true }
-    );
-
-    await connection.close();
-
-    res.json({ success: true, message: "Réservation ajoutée !" });
-
-  } catch (err) {
-    console.error("Erreur serveur :", err);
-    res.status(500).json({ success: false, message: err.message });
-  }
-});
 
 
 module.exports = router;

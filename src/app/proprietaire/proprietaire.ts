@@ -37,16 +37,7 @@ export class Proprietaire implements OnInit{
     this.user.email = u.email;
     this.user.telephone = u.telephone;
     this.user.date_naissance = u.date_naissance;
-    this.user.photo = u.photo;
-    this.imagePath = u.photo
-    /*
-? new URL(`../../assets/utilisateur/${u.photo}`, import.meta.url).href
-    : new URL(`../../assets/utilisateur/user.png`, import.meta.url).href;
-    console.log("CHEMIN FINAL =", this.imagePath);
-   console.log("PHOTO DANS ANGULAR =", this.user.photo);
-   console.log("URL CONSTRUITE =", this.user.photo ? 'assets/utilisateur/' + this.user.photo : 'assets/utilisateur/user.png');
-     */
-    
+    this.user.photo = u.photo ? `http://localhost:3000${u.photo}` : '';
 
      this.loadLogementsProprietaire(u.cin);
      this.loadReservationsProprietaire(u.cin);
@@ -101,23 +92,24 @@ loadReservationsProprietaire(cin: string) {
 
 /*charger les logements ajoutes par le proprietaire */
 loadLogementsProprietaire(cin: string) {
-  this.http.get(`http://localhost:3000/api/proprietaire/${cin}/logements`)
+  this.http.get<{ success: boolean, data: { titre: string, prix: number, photo: string }[] }>(`http://localhost:3000/api/proprietaire/${cin}/logements`)
     .subscribe({
-      next: (res: any) => {
+      next: (res) => {
         if (res.success) {
-          this.logementsAjoutes = res.data;
+          this.logementsAjoutes = res.data.map((l: { titre: string, prix: number, photo: string }) => ({
+            ...l,
+            photo: l.photo ? `http://localhost:3000/uploads/logement/${l.photo.split('/').pop()}` : 'assets/default-logement.png'
+          }));
         }
       },
-      error: (err: any) => {
+      error: (err) => {
         console.error("Erreur chargement logements :", err);
       }
     });
 }
 
 /*photo */
-  changePhoto() {
-    console.log("Changer Photo");
-  }
+ 
 
   clearPhoto() {
     this.user.photo = '';
