@@ -13,18 +13,7 @@
         ⚠️ Le nom doit contenir au moins 3 caractères.
        </div>
     </div>
-    <div class="form-group">
-     <label>Prénom</label>
-      <input type="text" name="prenom" class="text"[(ngModel)]="user.prenom" #prenom="ngModel" placeholder="Votre prenom" required minlength="3" />
-      <div class="Error" *ngIf="prenom.errors?.['required'] && (prenom.touched || prenom.dirty)">
-       ⚠️ Le prénom est obligatoire.
-       </div>
-
-      <div class="Error" *ngIf="prenom.errors?.['minlength'] && (prenom.touched || prenom.dirty)">
-       ⚠️ Le prénom doit contenir au moins 3 caractères.
-      </div>
-
-    </div>
+   
     <div class="form-group">
       <label>Email</label>
       <input type="email" name="email" class="text"[(ngModel)]="user.email" placeholder="exemple@mail.com" #email="ngModel" email required />
