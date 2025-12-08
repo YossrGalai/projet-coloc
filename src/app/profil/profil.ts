@@ -33,11 +33,12 @@ export class Profil implements OnInit{
     this.user.email = u.email;
     this.user.telephone = u.telephone;
     this.user.date_naissance = u.date_naissance;
-
+    this.user.photo = u.photo ? `http://localhost:3000${u.photo}` : '';
     this.loadReservations(u.cin);
-
+   console.log('User image:', this.user.photo);
     
   }
+  
 
 updateProfile() {
   console.log("Profil mis à jour :", this.user);
@@ -63,9 +64,10 @@ updateProfile() {
     });
 }
 
-changePhoto() {
-  alert("📸 Fonction à connecter plus tard");
-}
+
+
+
+
 
 clearPhoto() {
   this.user.photo = '';
