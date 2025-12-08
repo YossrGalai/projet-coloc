@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
 
     const connection = await oracledb.getConnection({
       user: "C##emnaa",
-      password: "123456",
+      password: "000000",
       connectString: "localhost:1521/orcl"
     });
 

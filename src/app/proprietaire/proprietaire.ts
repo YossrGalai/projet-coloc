@@ -1,3 +1,4 @@
+
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { Component } from '@angular/core';
@@ -151,3 +152,5 @@ loadLogementsProprietaire(cin: string) {
     this.router.navigate(['/']);
   }
 }
+
+

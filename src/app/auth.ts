@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private connected = false;
   private role: string = '';
+  constructor(private router: Router) {
+    const stored = localStorage.getItem('connected');
+    this.connected = stored === 'true';
+
+  }
 
   setConnected(value: boolean) {
     this.connected = value;
     localStorage.setItem('connected', value.toString());
   }
+ 
 
   isUserConnected(): boolean {
-    const stored = localStorage.getItem('connected');
-    return stored === 'true' || this.connected;
+      return this.connected;
   }
 
   setUserRole(role: string) {
@@ -31,5 +36,6 @@ export class AuthService {
     this.role = '';
     localStorage.removeItem('connected');
     localStorage.removeItem('role');
+    this.router.navigate(['/']);
   }
 }
