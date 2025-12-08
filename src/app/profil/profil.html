@@ -36,10 +36,11 @@
 
     <!-- Photo Profil -->
     <div class="profil-photo-section">
-      <img class="profil-photo" [src]="user.photo || 'assets/user.png'" alt="Photo de profil">
+      <img [src]="user.photo" alt="Profile Image">
+
 
       <div class="photo-buttons">
-  <button class="btn-edit" (click)="changePhoto()">Changer</button>
+  
   <button class="btn-clear" (click)="clearPhoto()">Retirer</button>
 </div>
 

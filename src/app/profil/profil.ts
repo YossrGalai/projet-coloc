@@ -34,15 +34,16 @@ export class Profil implements OnInit{
     this.user.email = u.email;
     this.user.telephone = u.telephone;
     this.user.date_naissance = u.date_naissance;
-
+    this.user.photo = u.photo ? `http://localhost:3000${u.photo}` : '';
     this.loadReservations(u.cin);
-    // Subscribe to reactive reservations
+   console.log('User image:', this.user.photo);    // Subscribe to reactive reservations
     this.reservationService.reservations$.subscribe(res => {
     this.reservations = res;
       });
 
     
   }
+  
 
 updateProfile() {
   console.log("Profil mis à jour :", this.user);
@@ -68,9 +69,10 @@ updateProfile() {
     });
 }
 
-changePhoto() {
-  alert("📸 Fonction à connecter plus tard");
-}
+
+
+
+
 
 clearPhoto() {
   this.user.photo = '';

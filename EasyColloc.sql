@@ -66,29 +66,29 @@ INSERT INTO utilisateur (cin, role, nom, prenom, email, mot_de_passe, telephone,
 VALUES (10000001, 'admin', 'Admin', 'System', 'admin@mail.com', 'admin123', '00000000', TO_DATE('01-01-1990', 'DD-MM-YYYY'), 'photo.jpg');
 
 INSERT INTO utilisateur (cin, role, nom, prenom, email, mot_de_passe, telephone, date_naissance,photo)
-VALUES (20000001, 'proprietaire', 'Ben Ali', 'Sami', 'sami.proprio@mail.com', 'pass123', '22112211', TO_DATE('15-05-1985', 'DD-MM-YYYY'),'sami.jpg');
+VALUES (20000001, 'proprietaire', 'Ben Ali', 'Sami', 'sami.proprio@mail.com', 'pass123', '22112211', TO_DATE('15-05-1985', 'DD-MM-YYYY'),'/uploads/utilisateur/Sami.jpg');
 
 INSERT INTO utilisateur (cin, role, nom, prenom, email, mot_de_passe, telephone, date_naissance,photo)
-VALUES (20000002, 'proprietaire', 'Khaldi', 'Mouna', 'mouna.proprio@mail.com', 'pass456', '33443344', TO_DATE('23-08-1987', 'DD-MM-YYYY'),'mouna.jpg');
+VALUES (20000002, 'proprietaire', 'Khaldi', 'Mouna', 'mouna.proprio@mail.com', 'pass456', '33443344', TO_DATE('23-08-1987', 'DD-MM-YYYY'),'/uploads/utilisateur/Mouna.jpg');
 
 INSERT INTO utilisateur (cin, role, nom, prenom, email, mot_de_passe, telephone, date_naissance,photo)
-VALUES (30000001, 'colocataire', 'Hammami', 'Yassine', 'yassine.coloc@mail.com', 'coloc123', '44554455', TO_DATE('12-02-1999', 'DD-MM-YYYY'),'yassine.jpg');
+VALUES (30000001, 'colocataire', 'Hammami', 'Yassine', 'yassine.coloc@mail.com', 'coloc123', '44554455', TO_DATE('12-02-1999', 'DD-MM-YYYY'),'/uploads/utilisateur/Yassine.jpg');
 
 INSERT INTO utilisateur (cin, role, nom, prenom, email, mot_de_passe, telephone, date_naissance,photo)
-VALUES (30000002, 'colocataire', 'Salah', 'Nour', 'nour.coloc@mail.com', 'coloc456', '55665566', TO_DATE('27-11-2000', 'DD-MM-YYYY'),'nour.jpg');
+VALUES (30000002, 'colocataire', 'Salah', 'Nour', 'nour.coloc@mail.com', 'coloc456', '55665566', TO_DATE('27-11-2000', 'DD-MM-YYYY'),'/uploads/utilisateur/Nour.jpg');
 
 INSERT INTO utilisateur (cin, role, nom, prenom, email, mot_de_passe, telephone, date_naissance,photo)
-VALUES (30000003, 'colocataire', 'Mejri', 'Malek', 'malek.coloc@mail.com', 'coloc789', '66776677', TO_DATE('05-07-1998', 'DD-MM-YYYY'),'malek.jpg');
+VALUES (30000003, 'colocataire', 'Mejri', 'Malek', 'malek.coloc@mail.com', 'coloc789', '66776677', TO_DATE('05-07-1998', 'DD-MM-YYYY'),'/uploads/utilisateur/Malek.jpg');
 
 --REMPLISSAGE LOGEMENT
 INSERT INTO logement (titre, adresse, ville, prix, nb_chambres, superficie, description, photo, type, reserve, cin_proprietaire, role_proprietaire)
-VALUES ('Appartement Centre Ville', 'Avenue Habib Bourguiba', 'Tunis', 750, 3, 120, 'Appartement spacieux proche de toutes commodités', 'photo1.jpg', 'Appartement', 'N', 20000001, 'proprietaire');
+VALUES ('Appartement Centre Ville', 'Avenue Habib Bourguiba', 'Tunis', 750, 3, 120, 'Appartement spacieux proche de toutes commodités', '/uploads/logement/Appartement Centre Ville.jpg', 'Appartement', 'N', 20000001, 'proprietaire');
 
 INSERT INTO logement (titre, adresse, ville, prix, nb_chambres, superficie, description, photo, type, reserve, cin_proprietaire, role_proprietaire)
-VALUES ('Studio Lac 2', 'Rue du Lac Biwa', 'Tunis', 450, 1, 45, 'Studio moderne très bien équipé', 'photo2.jpg', 'Studio', 'Y', 20000002, 'proprietaire');
+VALUES ('Studio Lac 2', 'Rue du Lac Biwa', 'Tunis', 450, 1, 45, 'Studio moderne très bien équipé', '/uploads/logement/Studio Lac 2.jpg', 'Studio', 'Y', 20000002, 'proprietaire');
 
 INSERT INTO logement (titre, adresse, ville, prix, nb_chambres, superficie, description, photo, type, reserve, cin_proprietaire, role_proprietaire)
-VALUES ('Maison Bord de Mer', 'Route Sidi Bou Ali', 'Sousse', 1200, 4, 200, 'Grande maison proche de la plage', 'photo3.jpg', 'Maison', 'N', 20000001, 'proprietaire');
+VALUES ('Maison Bord de Mer', 'Route Sidi Bou Ali', 'Sousse', 1200, 4, 200, 'Grande maison proche de la plage', '/uploads/logement/Maison Bord de Mer.jpg', 'Maison', 'N', 20000001, 'proprietaire');
 
 --REMPLISSAGE RESERVATION
 INSERT INTO reservation (cin_colocataire, role_colocataire, id_logement, date_debut, date_fin, statut)
@@ -108,7 +108,7 @@ SELECT * FROM reservation;
 
 SELECT cin,nom, prenom, email, telephone, date_naissance 
 FROM utilisateur 
-WHERE cin = 30000001;
+WHERE cin = 20000001;
 
 UPDATE reservation l
 SET l.statut = 'en_attente'
