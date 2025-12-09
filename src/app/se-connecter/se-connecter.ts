@@ -18,6 +18,7 @@ constructor(private router: Router, private http: HttpClient,private auth: AuthS
 
   user = {
     nom: '',
+    prenom: '',
     email: '',
     mot_de_passe: '',
     role: ''
@@ -62,6 +63,8 @@ goNext(form: NgForm) {
           if (res.data.role === 'proprietaire') this.router.navigate(['/proprietaire']);
           else this.router.navigate(['/profil']);
           this.resetForm();
+          console.log('Inscription réussie :', this.user);
+          this.auth.setConnected(true);   
         } else {
           this.errors.push("Email ou mot de passe incorrect.");
         }
@@ -87,6 +90,7 @@ goNext(form: NgForm) {
 resetForm() {
   this.user = {
     nom: '',
+    prenom: '',
     email: '',
     mot_de_passe: '',
     role: ''

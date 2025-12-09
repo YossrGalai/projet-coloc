@@ -18,12 +18,17 @@ const proprietaireRoutes = require('./routes/proprietaireRoutes');
 const logementRoutes = require('./routes/logementRoutes');
 const utilisateurRoutes = require('./routes/utilisateurRoutes');
 const authRoutes = require('./routes/auth'); 
+const reservationRoutes = require('./routes/reservationRoutes');
+
+
+
 
 app.use('/api', authRoutes); 
 app.use('/api/colocataires', colocataireRoutes);
 app.use('/api/proprietaires', proprietaireRoutes);
 app.use('/api/logements', logementRoutes);
 app.use('/api/utilisateur', utilisateurRoutes);
+app.use('/reservations', reservationRoutes);
 
 
 // Configure Multer for local file storage
