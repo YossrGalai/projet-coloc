@@ -15,14 +15,14 @@ export class LogementService {
     return this.http.get<Logement[]>(this.apiUrl);
   }
 
- getFilteredLogements(prix?: number, adresse?: string, type?: string): Observable<Logement[]> {
+ getFilteredLogements(prix?: number, ville?: string, type?: string, adresse?: string): Observable<Logement[]> {
   return this.getLogements().pipe(
     map(logements =>
       logements.filter(l =>
-        (prix == null || l.prix === prix) &&
+        (prix == null || l.prix <= prix) &&
+        (ville == null || l.ville.toLowerCase().includes(ville.toLowerCase()))&&
         (adresse == null || l.adresse.toLowerCase().includes(adresse.toLowerCase())) &&
         (type == null || l.type.toLowerCase() === type.toLowerCase())
-
       )
     )
   );

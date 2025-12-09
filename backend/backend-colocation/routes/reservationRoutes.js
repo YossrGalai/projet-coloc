@@ -17,12 +17,7 @@ router.post('/:logementId', async (req, res) => {
     const sql = `INSERT INTO reservation (ID_LOGEMENT, CIN_COLOCATAIRE, ROLE_COLOCATAIRE,DATE_DEBUT) 
                  VALUES (:id_logement, :cin, :role , TO_DATE(:date_debut, 'YYYY-MM-DD'))`;
     await connection.execute(sql, { id_logement: logementId, cin, role, date_debut }, { autoCommit: true });
-    // Mettre à jour le logement pour le marquer réservé
-    await connection.execute(
-      `UPDATE logement SET RESERVE = 'Y' WHERE ID_LOGEMENT = :id_logement`,
-      { id_logement: logementId },
-      { autoCommit: true }
-    );
+    
     await connection.close();
     res.send({ message: "Réservation ajoutée !" });
   } catch (err) {
