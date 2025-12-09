@@ -34,12 +34,12 @@ import { RouterModule } from '@angular/router';
   ];
 
   selectedLogement: any = null;
+  logements: Logement[] = [];
 
-
-voirDetail(logement: any) {
+  voirDetail(logement: any) {
   this.selectedLogement = logement; 
 
-}
+  }
 
 
 
@@ -48,7 +48,7 @@ voirDetail(logement: any) {
 
 
   
-  logements: Logement[] = [];
+
   reserver(logement: any) {
 
   // Toggle only for the UI 
@@ -81,15 +81,15 @@ voirDetail(logement: any) {
    searchVille: string | null= null;
    searchType: string | null = null;
    searchPrix: number | null = null;
-   searchQuartier: string | null= null;
+   searchAdresse: string | null= null;
 
   // Pour contrôler l’affichage des résultats
     showResults: boolean = false;
 
 
 applyFilter() { 
-  console.log("Valeurs envoyées :", this.searchVille, this.searchPrix); 
-  this.logementService.getFilteredLogements(this.searchPrix ?? undefined, this.searchVille ?? undefined, this.searchType ?? undefined) 
+  console.log("Valeurs envoyées :", this.searchVille, this.searchPrix), this.searchAdresse; 
+  this.logementService.getFilteredLogements(this.searchPrix ?? undefined, this.searchVille ?? undefined, this.searchType ?? undefined,this.searchAdresse ?? undefined) 
   .subscribe(data => 
     { console.log("Données reçues du backend :", data);
      this.logements = data.filter(l => l.reserve === false);
@@ -100,7 +100,7 @@ applyFilter() {
   resetSearch() {
   this.searchVille = null;
   this.searchType = null;
-  this.searchQuartier=null;
+  this.searchAdresse=null;
   this.searchPrix = null;
   this.logements = [];
   this.showResults = false;

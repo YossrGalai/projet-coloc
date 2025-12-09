@@ -19,12 +19,12 @@
  
      <!-- Select Ville -->
       <select [(ngModel)]="searchVille" class="search-select">
-       <option [ngValue]="null" value="" disabled selected>Choisir un gouvernorat...</option>
+       <option [ngValue]="null" value="" disabled selected>Choisir une Ville...</option>
        <option *ngFor="let ville of villes" [value]="ville">{{ ville }}</option>
       </select>
 
-     <!-- Input Quartier -->
-     <input  type="text" placeholder="Quartier..."  [(ngModel)]="searchQuartier" class="search-input" />
+     <!-- Input Adresse -->
+     <input  type="text" placeholder="Adresse..."  [(ngModel)]="searchAdresse" class="search-input" />
 
 
       <!-- Type -->
@@ -70,6 +70,7 @@
       <!-- Détails du logement sélectionné -->
       <div *ngIf="selectedLogement === logement" class="detail-logement">
         <h2>Détails du logement</h2>
+        <p><strong>Ville :</strong> {{ selectedLogement.ville }}</p>
         <p><strong>Adresse :</strong> {{ selectedLogement.adresse }}</p>
         <p><strong>Type:</strong> {{ selectedLogement.type }}</p>
         <p><strong>Prix :</strong> {{ selectedLogement.prix }} TND / mois</p>
