@@ -1,70 +1,88 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogementService } from './logement.service';
-import { AuthService } from '../auth.service'; // pour récupérer le cin
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-logement',
-  imports: [ FormsModule,CommonModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './logement.html',
-  styleUrl: './logement.css',
+  styleUrls: ['./logement.css']
 })
 export class Logement {
-    constructor(private router: Router,private logementService: LogementService,private auth: AuthService) {}
 
-  logement = {
-    titre: '',
-    adresse: '',
-    ville:'',
-    prix: 0,
-    nbchambres:0,
-    superficie:0,
-    type:'',
-    description: '',
-    photo: ''
-  };
+  logementForm: FormGroup;
+  preview: string | null = null;
 
-
-
-
-
-  
-  onImageSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => this.logement.photo = reader.result as string;
-      reader.readAsDataURL(file);
-    }
+  constructor(
+    private router: Router,
+    private logementService: LogementService,
+    private auth: AuthService,
+    private fb: FormBuilder
+  ) {
+    // Initialisation du formulaire dans le constructeur
+    this.logementForm = this.fb.group({
+      titre: ['', Validators.required],
+      adresse: ['', Validators.required],
+      ville: ['', Validators.required],
+      prix: [0, [Validators.required, Validators.min(0)]],
+      nbchambres: [0, [Validators.required, Validators.min(0)]],
+      superficie: [0, [Validators.required, Validators.min(0)]],
+      description: ['', Validators.required],
+      type: ['', Validators.required],
+      photo: ['']
+    });
   }
 
-  
- 
-Enregistrer() {
-  const user = this.auth.getUserData();
+  // ----------------------------
+  // Gestion de l'image et prévisualisation
+  // ----------------------------
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-  const payload = {
-    ...this.logement,
-    titre: this.logement.titre.substring(0,150),
-    adresse: this.logement.adresse.substring(0,255),
-    ville: this.logement.ville.substring(0,100),
-    description: this.logement.description.substring(0,255),
-    type: this.logement.type.substring(0,50),
-    image: this.logement.photo?.substring(0,255) || ''
-  };
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview = reader.result as string;
+      this.logementForm.patchValue({ photo: this.preview });
+    };
+    reader.readAsDataURL(file);
+  }
 
-  this.logementService.ajouterLogement(payload, user.cin).subscribe(
-    () => {
-      console.log("✅ Logement enregistré dans la BD");
-      this.router.navigate(['/proprietaire']);
-    },
-    error => {
-      console.error("❌ Erreur lors de l'ajout", error);
+  // ----------------------------
+  // Soumission du formulaire
+  // ----------------------------
+  Enregistrer() {
+    if (this.logementForm.invalid) {
+      this.logementForm.markAllAsTouched();
+      return;
     }
-  );
-}
 
+    const user = this.auth.getUserData();
+    const f = this.logementForm.value;
 
+    const payload = {
+      ...f,
+      titre: f.titre!.substring(0, 150),
+      adresse: f.adresse!.substring(0, 255),
+      ville: f.ville!.substring(0, 100),
+      description: f.description!.substring(0, 255),
+      type: f.type!.substring(0, 50),
+      image: f.photo?.substring(0, 255) || ''
+    };
+
+    this.logementService.ajouterLogement(payload, user.cin).subscribe({
+      next: () => {
+        console.log("✅ Logement enregistré dans la BD");
+        this.router.navigate(['/proprietaire']);
+      },
+      error: err => console.error("❌ Erreur lors de l’ajout", err)
+    });
+  }
 }

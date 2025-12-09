@@ -1,42 +1,62 @@
 <div class="logement-wrapper">
-
   <h2 class="logement-title">Ajouter un Logement</h2>
 
-  <form class="logement-form" (ngSubmit)="Enregistrer()">
+  <form [formGroup]="logementForm" class="logement-form" (ngSubmit)="Enregistrer()">
 
     <label>Titre du logement :</label>
-    <input type="text" [(ngModel)]="logement.titre" name="titre" required>
+    <input type="text" formControlName="titre">
+    <div class="error" *ngIf="logementForm.get('titre')?.touched && logementForm.get('titre')?.invalid">
+      Le titre est requis.
+    </div>
 
     <label>Adresse :</label>
-    <input type="text" [(ngModel)]="logement.adresse" name="adresse" required>
+    <input type="text" formControlName="adresse">
+    <div class="error" *ngIf="logementForm.get('adresse')?.touched && logementForm.get('adresse')?.invalid">
+      L'adresse est requise.
+    </div>
 
     <label>Ville :</label>
-    <input type="text" [(ngModel)]="logement.ville" name="Ville" required>
+    <input type="text" formControlName="ville">
+    <div class="error" *ngIf="logementForm.get('ville')?.touched && logementForm.get('ville')?.invalid">
+      La ville est requise.
+    </div>
 
     <label>Prix / mois :</label>
-    <input type="number" [(ngModel)]="logement.prix" name="prix" required>
+    <input type="number" formControlName="prix">
+    <div class="error" *ngIf="logementForm.get('prix')?.touched && logementForm.get('prix')?.invalid">
+      Prix invalide.
+    </div>
 
     <label>Nb de Chambres :</label>
-    <input type="number" [(ngModel)]="logement.nbchambres" name="nbchambres" required>
+    <input type="number" formControlName="nbchambres">
+    <div class="error" *ngIf="logementForm.get('nbchambres')?.touched && logementForm.get('nbchambres')?.invalid">
+      Nombre de chambres invalide.
+    </div>
 
     <label>Superficie :</label>
-    <input type="number" [(ngModel)]="logement.superficie" name="Superficie" required>
+    <input type="number" formControlName="superficie">
+    <div class="error" *ngIf="logementForm.get('superficie')?.touched && logementForm.get('superficie')?.invalid">
+      Superficie invalide.
+    </div>
 
     <label>Description :</label>
-    <textarea [(ngModel)]="logement.description" name="description" required></textarea>
+    <textarea formControlName="description"></textarea>
+    <div class="error" *ngIf="logementForm.get('description')?.touched && logementForm.get('description')?.invalid">
+      La description est requise.
+    </div>
 
     <label>Type :</label>
-    <input type="text" [(ngModel)]="logement.type" name="type" required>
+    <input type="text" formControlName="type">
+    <div class="error" *ngIf="logementForm.get('type')?.touched && logementForm.get('type')?.invalid">
+      Le type est requis.
+    </div>
 
     
 
-    <div class="image-preview" *ngIf="logement.photo">
-      <img [src]="logement.photo" alt="Aperçu">
-    </div>
+    <button class="btn-save" type="submit" [disabled]="logementForm.invalid">
+      ✅ Ajouter le Logement
+    </button>
 
-    <button class="btn-save" type="submit">✅ Ajouter le Logement</button>
     <button class="btn-back" routerLink="/proprietaire">← Retour</button>
-
   </form>
-
 </div>

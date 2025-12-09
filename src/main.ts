@@ -9,12 +9,14 @@ import { importProvidersFrom } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+
 bootstrapApplication(App , {
-
-   providers: [
+  providers: [
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    importProvidersFrom(
+      HttpClientModule,
+      FormsModule
+    )
   ]
-
 }).catch(err => console.error(err));
-  
