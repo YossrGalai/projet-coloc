@@ -140,7 +140,20 @@ loadLogementsProprietaire(cin: string) {
           // mettre a jour localement pour rafraîchir le tableau sans recharger
           const index = this.reservations.findIndex(r => r.id_reservation === id);
           if(index !== -1) this.reservations[index].statut = statut;
+
+           // If accepted → update logement.reserve
+          if (statut === 'acceptée') {
+            const logementId = this.reservations[index].id_logement;
+
+            this.http.put(
+              `http://localhost:3000/api/logement/${logementId}/reserve`,
+              { reserve: 'Y' }
+            ).subscribe({
+              next: () => console.log("Logement mis à jour (Y)"),
+              error: err => console.error("Erreur update logement:", err)
+            });
         }
+      }
       },
       error: (err: any) => {
         console.error("Erreur mise à jour statut :", err);
