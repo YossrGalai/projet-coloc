@@ -35,7 +35,7 @@ export class Logement {
       adresse: ['', Validators.required],
       ville: ['', Validators.required],
       prix: [0, [Validators.required, Validators.min(0)]],
-      nbchambres: [0, [Validators.required, Validators.min(0)]],
+      chambres: [0, [Validators.required, Validators.min(0)]],
       superficie: [0, [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
       type: ['', Validators.required],
@@ -77,6 +77,7 @@ export class Logement {
       ville: f.ville!.substring(0, 100),
       description: f.description!.substring(0, 255),
       type: f.type!.substring(0, 50),
+      nb_chambres: Number(f.chambres), 
       image: f.photo?.substring(0, 255) || ''
     };
 

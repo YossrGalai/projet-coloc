@@ -28,7 +28,12 @@ export class Chatbot {
     { keywords: ['contrat', 'document'], answer: 'Ton contrat est disponible dans ton profil, section “Documents”.' },
     { keywords: ['quitter', 'départ'], answer: 'Préviens 30 jours à l’avance si tu veux quitter la colocation.' },
     { keywords: ['urgence', 'problème'], answer: 'En cas d’urgence, appelle le 198 (pompiers) ou le 190 (ambulance).' },
-    { keywords: ['stationnement', 'parking'], answer: 'Le stationnement se fait dans les places indiquées. Ne bloque pas le passage 🙏' }
+    { keywords: ['stationnement', 'parking'], answer: 'Le stationnement se fait dans les places indiquées. Ne bloque pas le passage 🙏' },
+    { keywords: ['chercher', 'logement', 'recherche'], answer: 'Vous pouvez rechercher un logement en indiquant une ville, une adresse, un prix ou un type.' },
+    { keywords: ['compte', 'inscription', 'créer compte'], answer: 'Rendez-vous sur la page “Inscription”, remplissez vos informations et validez.' },
+    { keywords: ['connexion', 'login', 'mot de passe'], answer: 'Assurez-vous que votre email et votre mot de passe sont corrects.' },
+    { keywords: ['types', 'logements', 'appartement', 'maison', 'studio', 'villa'], answer: 'Nous proposons des appartements, des maisons, des studios et des villas.' },
+    { keywords: ['réserver', 'plusieurs', 'en même temps'], answer: 'Oui, mais chaque réservation doit être faite séparément.' }
  ];
 
   toggleChat() {
