@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogementService } from './logement.service';
 import { AuthService } from '../auth.service';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-logement',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './logement.html',
   styleUrls: ['./logement.css']

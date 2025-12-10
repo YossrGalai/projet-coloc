@@ -380,7 +380,7 @@ router.put("/reservation/:id/statut", async (req, res) => {
 
 
 // POST /api/logement
-router.post("/logement", async (req, res) => {
+router.post("/logements", async (req, res) => {
     const {
         titre,
         adresse,
