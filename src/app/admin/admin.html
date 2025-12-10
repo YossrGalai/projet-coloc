@@ -71,18 +71,21 @@
       </thead>
       <tbody>
         <tr *ngFor="let log of logements" class="border-b hover:bg-gray-50">
-          <td class="px-4 py-2">{{log.TITRE}}</td>
-          <td class="px-4 py-2">{{log.ADRESSE}}</td>
-          <td class="px-4 py-2">{{log.VILLE}}</td>
-          <td class="px-4 py-2">{{log.PRIX | currency:'TND'}}</td>
-          <td class="px-4 py-2">{{ log.TYPE }}</td>
-          <td class="px-4 py-2">{{ log.RESERVE }}</td>
-          <td class="px-4 py-2">{{ log.NB_CHAMBRES }}</td>
-          <td class="px-4 py-2">{{ log.SUPERFICIE}}</td>
-          <td class="px-4 py-2">
-            <button (click)="deleteLogement(log.ID_LOGEMENT)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
-          </td>
-        </tr>
+          <td class="px-4 py-2">{{log.titre}}</td>
+          <td class="px-4 py-2">{{log.adresse}}</td>
+          <td class="px-4 py-2">{{log.ville}}</td>
+          <td class="px-4 py-2">{{log.prix | currency:'TND'}}</td>
+          <td class="px-4 py-2">{{log.type}}</td>
+          <td class="px-4 py-2">{{log.reserve}}</td>
+          <td class="px-4 py-2">{{log.chambres}}</td>
+          <td class="px-4 py-2">{{log.superficie}}</td>
+        <td class="px-4 py-2">
+    <button (click)="deleteLogement(log.id)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+      Supprimer
+    </button>
+  </td>
+</tr>
+
       </tbody>
     </table>
   </section>

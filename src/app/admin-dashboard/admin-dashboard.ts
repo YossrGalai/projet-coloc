@@ -24,7 +24,7 @@ export class AdminDashboard {
     this.adminService.getProprietaires()
       .subscribe(data => this.proprietairesCount = data.length);
 
-    this.adminService.getLogements()
+    this.adminService.getAllLogements()
       .subscribe(data => this.logementsCount = data.length);
   }
 }

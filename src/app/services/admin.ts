@@ -22,7 +22,7 @@ export class AdminService {
   }
 
   // Récupérer tous les logements
-  getLogements(): Observable<any[]> {
+  getAllLogements(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/logements`);
   }
 

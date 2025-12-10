@@ -19,7 +19,7 @@ export class LoginAdmin {
   constructor(private auth: AuthService, private router: Router) {}
 
   login() {
-    if (this.email === 'admin@example.com' && this.password === 'admin123') {
+    if (this.email === 'admin@mail.com' && this.password === 'admin123') {
       this.auth.setConnected(true);
       this.auth.setUserRole('admin');
       this.router.navigate(['/admin']);

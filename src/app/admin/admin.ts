@@ -31,7 +31,7 @@ export class Admin implements OnInit {
     this.adminService.getProprietaires().subscribe(data => {
       this.proprietaires = data.map(u => ({ ...u, role: 'proprietaire' }));
     });
-    this.adminService.getLogements().subscribe(data => this.logements = data);
+    this.adminService.getAllLogements().subscribe(data => this.logements = data);
   }
 
   deleteUser(cin: number, role: 'colocataire' | 'proprietaire') {

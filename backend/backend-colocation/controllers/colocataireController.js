@@ -1,35 +1,7 @@
 const { getConnection }= require('../db/connection');
 const oracledb = require('oracledb');
 
-/*exports.getAll  = async (req, res) => {
-  let connection;
-  try {
-    connection = await getConnection();
-    const result = await connection.execute("SELECT * FROM logement ");
-    const logements = result.rows.map(row => ({
-  id: row[0],
-  titre: row[1],
-  adresse: row[2],
-  ville: row[3],
-  prix: row[4],
-  chambres: row[5],
-  superficie: row[6],
-  photo: row[7],
-  type: row[8],
-  reserve: row[9] === 'Y',
-  proprietaireId: row[10],
-  proprietaireType: row[11],
-  description: row[12]
-}));
-    res.json(logements);
- 
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
-  } finally {
-    if (connection) await connection.close();
-  }
-};*/
+
 
 exports.getAllColocataires = async (req, res) => {
   let connection;
