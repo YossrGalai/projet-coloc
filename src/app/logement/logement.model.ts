@@ -1,4 +1,5 @@
 export interface Logement {
+  id:number;
   titre: string;
   adresse: string;
   ville:string;
@@ -6,7 +7,7 @@ export interface Logement {
   chambres:number;
   superficie:number;
   description: string;
-  image: string;
+  photo: string;
   type: string;
   reserve:boolean;
 }
