@@ -3,15 +3,15 @@ const oracledb = require('oracledb');
  async function getConnection() {
   try {
     return await oracledb.getConnection({
-      user: "C##emnaa",
+      /*user: "C##emnaa",
       password: "000000", 
       connectString: "localhost:1521/XE"
       /*user: "system",
       password: "yossr2004", 
       connectString: "localhost:1521/XE"*/
-      /*user: "system",
+      user: "system",
       password: "123", 
-      connectString: "localhost:1522/orcl1" */
+      connectString: "localhost:1522/orcl1" 
 
     });
   } catch (err) {
