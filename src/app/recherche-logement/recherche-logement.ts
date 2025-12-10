@@ -37,30 +37,32 @@ import { RouterModule } from '@angular/router';
   logements: Logement[] = [];
 
   voirDetail(logement: any) {
-  this.selectedLogement = logement; 
-
+     this.selectedLogement = logement; 
   }
 
-
-
-
-
-
-
-  
-
   reserver(logement: any) {
-
-  // Toggle only for the UI 
+   const user = this.auth.getUserData();
+   const key = `reserve_${user.cin}_${logement.id}`;
+  // Toggle
   logement.reserve = !logement.reserve;
+   
   // Récupérer les infos de l'utilisateur connecté
-  const user = this.auth.getUserData();
+  
   const payload = {
     logementId: logement.id,
     cin: user.cin,
     role: user.role,
     date_debut: new Date().toISOString().slice(0, 10) // Format YYYY-MM-DD
   };
+  // Save the single logement reservation in localStorage
+  if (logement.reserve) {
+    localStorage.setItem(key, 'true');
+  } else {
+    localStorage.removeItem(key);
+  }
+
+  // Update the full logements array in localStorage so ngOnInit can read it
+  localStorage.setItem('logements', JSON.stringify(this.logements));
   if (logement.reserve) {
 
     // INSERT in the table RESERVER
@@ -87,14 +89,34 @@ import { RouterModule } from '@angular/router';
     showResults: boolean = false;
 
 
-applyFilter() { 
-  console.log("Valeurs envoyées :", this.searchVille, this.searchPrix), this.searchAdresse; 
-  this.logementService.getFilteredLogements(this.searchPrix ?? undefined, this.searchVille ?? undefined, this.searchType ?? undefined,this.searchAdresse ?? undefined) 
-  .subscribe(data => 
-    { console.log("Données reçues du backend :", data);
-     this.logements = data.filter(l => l.reserve === false);
-     this.showResults = true; // on affiche la section 
- }); }
+
+
+
+ applyFilter() { 
+  const user = this.auth.getUserData();
+  console.log("Valeurs envoyées :", this.searchVille, this.searchPrix, this.searchAdresse); 
+
+  this.logementService.getFilteredLogements(
+    this.searchPrix ?? undefined,
+    this.searchVille ?? undefined,
+    this.searchType ?? undefined,
+    this.searchAdresse ?? undefined
+  )
+  .subscribe(data => {
+    console.log("Données reçues du backend :", data);
+
+    // Hide owner-accepted logements, but mark user reservations
+    this.logements = data
+      .filter(l => !l.reserve) // hide if owner accepted
+      .map(l => {
+        const key = user ? `reserve_${user.cin}_${l.id}` : '';
+        l.reserve = user ? localStorage.getItem(key) === 'true' : false;
+        return l;
+      });
+
+    this.showResults = true;
+  });
+}
 
 
   resetSearch() {
@@ -111,13 +133,38 @@ applyFilter() {
     this.router.navigate(['/']);
   }
 
-  ngOnInit(): void { 
-   const logements = JSON.parse(localStorage.getItem('logements') || '[]');
-   this.logements = logements;
-    
+
+
+
+ngOnInit(): void {
+  const user = this.auth.getUserData();
+
+  let logements = JSON.parse(localStorage.getItem('logements') || '[]');
+
+  if (logements.length === 0) {
+    // First visit: fetch from backend
+    this.logementService.getLogements().subscribe((data: Logement[]) => {
+      this.logements = data
+        .filter(l => !l.reserve) // hide owner-accepted
+        .map(l => {
+          const key = user ? `reserve_${user.cin}_${l.id}` : '';
+          l.reserve = user ? localStorage.getItem(key) === 'true' : false;
+          return l;
+        });
+
+      localStorage.setItem('logements', JSON.stringify(this.logements));
+    });
+  } else {
+    // Already in localStorage
+    this.logements = logements
+      .filter((l:any) => !l.reserve) // hide owner-accepted
+      .map((l:any) => {
+        const key = user ? `reserve_${user.cin}_${l.id}` : '';
+        l.reserve = user ? localStorage.getItem(key) === 'true' : false;
+        return l;
+      });
   }
-
-
+}
 
 
 }

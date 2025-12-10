@@ -5,8 +5,7 @@ const { getConnection } = require('../db/connection');
 // ADD reservation
 router.post('/:logementId', async (req, res) => {
   const logementId = req.params.logementId;
-  const { cin, role , date_debut} = req.body;  // récupérer les infos envoyées depuis Angular
-   console.log('Payload reçu :', req.body); // Vérifier les données
+  const { cin, role , date_debut} = req.body;  // récupérer les infos 
 
   if (!cin || !role || !date_debut) {
     return res.status(400).send({ message: 'CIN ou rôle manquant' });
@@ -30,7 +29,6 @@ router.post('/:logementId', async (req, res) => {
 router.delete('/:logementId', async (req, res) => {
   const logementId = req.params.logementId;
   const { cin } = req.body;  // pour supprimer la réservation uniquement de l'utilisateur connecté
-  console.log('logementId:', logementId, 'cin:', cin);
 
 
   try {
