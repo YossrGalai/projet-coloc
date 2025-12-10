@@ -12,8 +12,8 @@
 }
 /* Bouton Déconnexion */
 .btn-logout {
-  background-color: #ff6b6b;
-  color: rgb(44, 40, 40);
+  background-color: #fec6cf;
+  color: white;
   border: none;
   padding: 8px 14px;
   border-radius: 6px;
@@ -24,7 +24,7 @@
 }
 
 .btn-logout:hover {
-  background-color: #ff4b4b;
+  background-color: #f2a6b2;
 }
 
 
@@ -141,7 +141,7 @@
   margin-top: 6px;
 }
 
-.btn-edit,
+
 .btn-clear {
   padding: 6px 14px;
   font-size: 13px;
@@ -151,11 +151,10 @@
   white-space: nowrap;
 }
 
-.btn-edit { background: #bda3cc; color: white; }
-.btn-edit:hover { background: #a080b8; }
 
-.btn-clear { background: #e78aa3; color: white; }
-.btn-clear:hover { background: #cc6b89; }
+
+.btn-clear { background: #fec6cf; color: white; }
+.btn-clear:hover { background: #f2a6b2; }
 
 /* DIVIDER */
 .divider {

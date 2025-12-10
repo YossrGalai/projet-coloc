@@ -70,14 +70,14 @@
     <tr>
       <th>Logement</th>
       <th>Date Début </th>
-      <th>Date Fin</th>
+      
       <th>Actions</th>
     </tr>
 
     <tr *ngFor="let r of reservations">
   <td>{{ r.logement }}</td>
   <td>{{ r.date_debut }}</td>
-  <td>{{ r.date_fin }}</td>
+  
   <td class="action-buttons">
     <button class="btn-accept" (click)="accepterReservation(r)">Accepter</button>
     <button class="btn-refuse" (click)="refuserReservation(r)">Refuser</button>

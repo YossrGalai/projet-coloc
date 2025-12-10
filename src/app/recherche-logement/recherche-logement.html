@@ -80,7 +80,9 @@
         <!-- Display the image -->
         <div *ngIf="selectedLogement.photo">
         <strong>Image :</strong>
-        <img [src]="selectedLogement.photo" alt="Logement Image" style="max-width: 100%; height: auto; margin-top: 5px;">
+        <img [src]="'http://localhost:3000' + selectedLogement.photo" alt="Logement Image" style="max-width: 100%; height: auto; margin-top: 5px;">
+
+        
         </div>
         <button (click)="selectedLogement = null">Fermer</button>
       </div>

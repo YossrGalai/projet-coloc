@@ -1,28 +1,67 @@
+/* Conteneur principal */
 .dashboard-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 30px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f0ec; /* beige clair */
+  color: #333333; /* texte gris foncé */
 }
 
+/* Barre supérieure (header) */
+.dashboard-header {
+  background-color: #e6ded6; /* beige un peu plus chaud */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  color: #333333; /* texte gris foncé */
+}
+
+/* Conteneur des cartes */
 .cards {
   display: flex;
+  flex-wrap: wrap; /* responsive */
   gap: 20px;
   margin-bottom: 30px;
 }
 
+/* Cartes */
 .card {
-  flex: 1;
-  background-color: #f5f5f5;
-  padding: 15px;
-  border-radius: 8px;
+  flex: 1 1 200px;
+  background-color: #ffffff; /* cartes blanches pour contraste */
+  padding: 25px 20px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card h2 {
   margin: 0 0 10px;
+  font-size: 22px;
+  color: #333333;
 }
 
 .card p {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
+  color:#a7624a;
+  margin: 0;
+}
+
+
+
+/* Responsive pour petits écrans */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+  }
 }
